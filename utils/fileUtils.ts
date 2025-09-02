@@ -11,8 +11,8 @@ export const fileToBase64 = (file: File): Promise<{ base64Data: string; mimeType
             const mimeType = result.substring(result.indexOf(':') + 1, result.indexOf(';'));
             resolve({ base64Data, mimeType });
         };
-        reader.onerror = (error) => {
-            reject(error);
+        reader.onerror = () => {
+            reject(new Error(`Failed to read the file '${file.name}'. It may be corrupted or inaccessible.`));
         };
     });
 };
