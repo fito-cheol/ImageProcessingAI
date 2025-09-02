@@ -199,9 +199,11 @@ const getTryOnPoseInstruction = (pose: TryOnPose): string => {
 }
 
 const getTryOnBackgroundInstruction = (background: TryOnBackground): string => {
+    const originalBackgroundInstruction = "The final image must feature the newly styled person seamlessly placed within the EXACT original background from the 'person' image. The original person must NOT be visible in the final image; they are completely replaced by the newly styled version. The background itself must remain identical to the original. Ensure there is no duplication or ghosting of people. The final output must look like a single, cohesive photograph of the new person in the old environment.";
+
     switch (background) {
         case 'Original Background':
-            return "It is absolutely critical to use the background from the original person's image. You MUST completely REMOVE the original person from this background. Then, place the newly generated, fully-styled person into that empty background. The final result should look like a single, seamless photograph where only the newly-styled person exists in the original environment. There should be absolutely no ghosting, duplication, or remnants of the original person in the final image.";
+            return originalBackgroundInstruction;
         case 'Studio':
             return "The background of the final image must be a clean, simple, neutral studio setting (e.g., light gray, white) to focus on the person and the outfit.";
         case 'Urban':
@@ -211,21 +213,21 @@ const getTryOnBackgroundInstruction = (background: TryOnBackground): string => {
         case 'Cafe':
             return "Generate a photorealistic background of a cozy and modern café interior. The person should be believably integrated into the scene. Pay attention to realistic lighting and depth of field.";
         default:
-            return "It is absolutely critical to preserve the background from the original person's image.";
+            return originalBackgroundInstruction;
     }
 }
 
 const createTryOnPrompt = (pose: TryOnPose, background: TryOnBackground): string => `
 You are an expert AI fashion stylist. Your task is to dress the person from the first image with the clothing and accessories from the subsequent images.
 
-**Instructions:**
-1. The very first image provided is the person to be dressed. All subsequent images are clothing or accessory items.
-2. Analyze the person. If the image is not a full-body shot (e.g., only shows the upper body), you must realistically generate a full-body view of them. It is critical to maintain their original physical characteristics, face, and body proportions.
-3. **Pose Instruction:** ${getTryOnPoseInstruction(pose)}
-4. **Background Instruction:** ${getTryOnBackgroundInstruction(background)}
-5. Digitally and seamlessly dress the person with ALL the provided items. The clothes must fit naturally on the person's body according to the specified pose.
-6. The final output must be a single, cohesive, photorealistic image of the person wearing the new outfit.
-7. Ensure the final image looks like a real photograph, not a digital composite or illustration. Realism is the top priority.
+**CRITICAL INSTRUCTIONS:**
+1.  **Identify the Person and Clothing:** The **very first image is the person** whose face, identity, and body you must use. All **subsequent images are for clothing reference ONLY**. If these subsequent images contain people, you MUST IGNORE those people and only use the clothes they are wearing.
+2.  **Preserve Identity:** It is absolutely essential that you maintain the exact face, facial features, hair, and physical identity of the person from the **first image**. Do NOT change their face or replace it with someone else's.
+3.  **Synthesize Full Body (if needed):** If the first image is not a full-body shot (e.g., only shows the upper body), you must realistically generate a full-body view of them, preserving their original characteristics.
+4.  **Apply Clothing:** Digitally and seamlessly dress the person from the first image with ALL the provided clothing items. The clothes must fit naturally on their body according to the specified pose.
+5.  **Pose Instruction:** ${getTryOnPoseInstruction(pose)}
+6.  **Background Instruction:** ${getTryOnBackgroundInstruction(background)}
+7.  **Final Output:** The final output must be a single, cohesive, photorealistic image of the original person wearing the new outfit. It must look like a real photograph. Realism is the top priority.
 `;
 
 export const virtualTryOn = async (
