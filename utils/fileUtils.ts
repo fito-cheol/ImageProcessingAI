@@ -1,9 +1,14 @@
 
 export const fileToBase64 = (file: File): Promise<{ base64Data: string; mimeType: string }> => {
     return new Promise((resolve, reject) => {
-        // The canvas method is more robust than FileReader on mobile devices,
-        // especially on Android where files are accessed via content URIs which
-        // can cause issues with direct reading.
+        // Pre-emptively check for supported MIME types.
+        const supportedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+        if (!supportedTypes.includes(file.type)) {
+            return reject(new Error(
+                `Unsupported file type for '${file.name}'. Please upload a JPG, PNG, or WEBP image.`
+            ));
+        }
+
         const imageUrl = URL.createObjectURL(file);
         const img = new Image();
 
@@ -20,11 +25,7 @@ export const fileToBase64 = (file: File): Promise<{ base64Data: string; mimeType
 
             ctx.drawImage(img, 0, 0);
 
-            // Get the data URL from the canvas. Using file.type preserves the original format.
-            // A quality parameter of 0.95 is used for JPEG/WEBP formats.
             const dataUrl = canvas.toDataURL(file.type, 0.95);
-
-            // Clean up the temporary object URL.
             URL.revokeObjectURL(imageUrl);
 
             const base64Data = dataUrl.split(',')[1];
@@ -38,9 +39,18 @@ export const fileToBase64 = (file: File): Promise<{ base64Data: string; mimeType
         };
 
         img.onerror = () => {
-            // This error triggers if the file selected cannot be loaded as an image.
             URL.revokeObjectURL(imageUrl);
-            reject(new Error(`Failed to load the image file '${file.name}'. It may be corrupted or an unsupported format.`));
+            
+            // The browser's onerror event for images is generic and doesn't specify the cause.
+            // We can enhance the message based on the user's environment.
+            const isAndroid = /android/i.test(navigator.userAgent);
+            let errorMessage = `Failed to load the image file '${file.name}'. It may be corrupted or in an unsupported format.`;
+            
+            if (isAndroid) {
+                errorMessage += "\n\nOn Android, this can happen if the file is from a cloud service (like Google Photos) or a secure folder. Please try saving the image to your device's local 'Downloads' or 'Pictures' folder and select it from there.";
+            }
+
+            reject(new Error(errorMessage));
         };
 
         img.src = imageUrl;
