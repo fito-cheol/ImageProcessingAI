@@ -111,8 +111,10 @@ Your task is to take the user's uploaded image and transform the main subject in
 *   **Resolution & Aspect Ratio:** The final output image MUST be a high-resolution landscape photograph with an exact resolution of 1920x1080 pixels (a 16:9 aspect ratio). This is a strict, non-negotiable requirement.
 *   **Composition:** The arrangement of the figure and box must be HORIZONTAL to fill the wide 1920x1080 frame. DO NOT stack them vertically. The final image should be a cinematic, wide shot.
 *   **Scene:** Create a single, cohesive professional product photograph.
-*   **Arrangement:** On the left side, display the collectible figure standing on its base. On the right side, display its corresponding retail packaging (box) standing upright.
-*   **Box Art:** Use the original uploaded image itself as the primary artwork on the packaging. The art should be vibrant and well-integrated into the box design, which should also feature a clear plastic window.
+*   **Arrangement:** On one side, display the collectible figure standing on its base. On the other side, display its corresponding retail packaging (box) standing upright.
+*   **Box Art:** Use the original uploaded image itself as the primary artwork on the packaging. The art should be vibrant and well-integrated into the box design.
+*   **Box Design:** The packaging must feature a large, clear plastic window so the figure inside is clearly visible.
+*   **Box Contents:** The figure visible inside the box through the window MUST be the IDENTICAL TWIN of the figure displayed outside the box. Same model, same pose, same colors. It is crucial that they are not different in any way.
 *   **Environment:** ${getBackgroundDescription(options.background)}
 
 **CRITICAL RULE:** Avoid an "action figure" look with visible joints or articulation. The result must be a premium, static, display-focused art piece, presented as a single, unified product shot.
