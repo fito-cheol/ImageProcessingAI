@@ -2,10 +2,11 @@ import React, { useState, useCallback } from 'react';
 import { Header } from './components/Header';
 import { ImageUploader } from './components/ImageUploader';
 import { Loader } from './components/Loader';
-import { virtualTryOn } from './services/geminiService';
+import { virtualTryOn, TryOnPose } from './services/geminiService';
 import { fileToBase64 } from './utils/fileUtils';
 import { SparklesIcon } from './components/icons/SparklesIcon';
 import { useLanguage } from './contexts/LanguageContext';
+import { PoseOptions } from './components/PoseOptions';
 
 const MAX_ITEMS = 4;
 
@@ -34,6 +35,7 @@ export const TryOnApp: React.FC = () => {
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [pose, setPose] = useState<TryOnPose>('Original Pose');
   const { language, setLanguage, t } = useLanguage();
 
   const handlePersonUpload = (file: File) => {
@@ -63,6 +65,7 @@ export const TryOnApp: React.FC = () => {
       setGeneratedImage(null);
       setError(null);
       setIsLoading(false);
+      setPose('Original Pose');
   };
 
   const handleGenerate = useCallback(async () => {
@@ -84,7 +87,7 @@ export const TryOnApp: React.FC = () => {
       const personData = await fileToBase64(personFile);
       const itemsData = await Promise.all(validItems.map(file => fileToBase64(file)));
       
-      const result = await virtualTryOn(personData, itemsData);
+      const result = await virtualTryOn(personData, itemsData, pose);
       
       if (result.imageUrl) {
         setGeneratedImage(result.imageUrl);
@@ -101,7 +104,7 @@ export const TryOnApp: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [personFile, itemFiles, t]);
+  }, [personFile, itemFiles, t, pose]);
   
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'ko' : 'en');
@@ -187,24 +190,26 @@ export const TryOnApp: React.FC = () => {
           </div>
         </div>
 
-
         {personFile && !isLoading && (
-          <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
-              <button
-                  onClick={handleGenerate}
-                  disabled={isLoading}
-                  className="w-full sm:w-auto flex items-center justify-center gap-3 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-900/50 disabled:cursor-not-allowed text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-indigo-600/30"
-              >
-                  <SparklesIcon />
-                  {generatedImage ? t('regenerateButton') : t('generateButton')}
-              </button>
-               <button
-                  onClick={resetState}
-                  className="w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300"
-              >
-                  {t('startOverButton')}
-              </button>
-          </div>
+          <>
+            <PoseOptions currentPose={pose} onPoseChange={setPose} />
+            <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
+                <button
+                    onClick={handleGenerate}
+                    disabled={isLoading}
+                    className="w-full sm:w-auto flex items-center justify-center gap-3 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-900/50 disabled:cursor-not-allowed text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-indigo-600/30"
+                >
+                    <SparklesIcon />
+                    {generatedImage ? t('regenerateButton') : t('generateButton')}
+                </button>
+                 <button
+                    onClick={resetState}
+                    className="w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300"
+                >
+                    {t('startOverButton')}
+                </button>
+            </div>
+          </>
         )}
 
       </main>

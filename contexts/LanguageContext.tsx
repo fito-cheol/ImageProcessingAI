@@ -57,6 +57,16 @@ const translations = {
       errorGenerate: "The AI could not generate an image. Please try a different image or adjust the options.",
       errorTransform: "An error occurred while transforming the image. Please try again.",
       
+      // Pose Options
+      poseSectionTitle: "Choose a Pose",
+      'Original Pose': "Original Pose",
+      // FIX: Use unique key 'Try On: Standing' to avoid conflict.
+      'Try On: Standing': "Standing",
+      'Fashion Model': "Fashion Model",
+      'Walking': "Walking",
+      // FIX: Use unique key 'Try On: Sitting' to avoid conflict.
+      'Try On: Sitting': "Sitting",
+
       // TransformOptions
       customizeTitle: "Customize Your Figure",
       coreConceptSection: "Core Concept",
@@ -78,7 +88,8 @@ const translations = {
       'Matte': 'Matte', 'Glossy': 'Glossy', 'Metallic': 'Metallic', 'Weathered': 'Weathered',
       'None': 'None', 'Simple Disc': 'Simple Disc', 'Themed Diorama': 'Themed Diorama', 'Floating': 'Floating',
       'PVC/ABS': 'PVC/ABS', 'Resin': 'Resin', 'Polystone': 'Polystone', 'Metal': 'Metal',
-      'Standing': 'Standing', 'Dynamic/Action': 'Dynamic/Action', 'Sitting': 'Sitting',
+      // FIX: Use unique key 'Figure: Standing' to avoid conflict.
+      'Figure: Standing': 'Standing', 'Dynamic/Action': 'Dynamic/Action', 'Figure: Sitting': 'Sitting',
       'Original Colors': 'Original Colors', 'Monochrome': 'Monochrome', 'Vibrant': 'Vibrant',
       'Standard': 'Standard', 'High': 'High', 'Ultra': 'Ultra',
       'Studio': 'Studio', 'Bookshelf': 'Bookshelf', 'Desktop': 'Desktop', 'Showcase': 'Showcase',
@@ -105,9 +116,11 @@ const translations = {
       'Resin': 'High-quality material for capturing fine details, heavier and more brittle.',
       'Polystone': 'A stone-like compound that is heavy and durable.',
       'Metal': 'Uses die-cast metal parts for a premium weight and feel.',
-      'Standing': 'A stable, neutral museum-style standing pose.',
+      // FIX: Use unique key 'Figure: Standing' to avoid conflict.
+      'Figure: Standing': 'A stable, neutral museum-style standing pose.',
       'Dynamic/Action': 'An energetic pose captured mid-movement, like jumping or attacking.',
-      'Sitting': 'A relaxed sitting or kneeling pose.',
+      // FIX: Use unique key 'Figure: Sitting' to avoid conflict.
+      'Figure: Sitting': 'A relaxed sitting or kneeling pose.',
       'Original Colors': 'Uses the color palette from the uploaded image.',
       'Monochrome': 'Renders the figure in a single color scheme, like grayscale.',
       'Vibrant': 'Enhances the original colors to be more saturated and eye-catching.',
@@ -118,6 +131,15 @@ const translations = {
       'Bookshelf': 'Places the figure on a bookshelf among books for a cozy feel.',
       'Desktop': 'A modern desk environment with items like a keyboard or monitor.',
       'Showcase': 'Inside a glass display case with dramatic lighting.',
+
+      // Pose Options descriptions
+      'Original Pose': "Maintains the pose from your uploaded photo of the person.",
+      // FIX: Use unique key 'Try On: Standing' to avoid conflict.
+      'Try On: Standing': "Generates a standard, neutral standing pose.",
+      'Fashion Model': "Generates a stylish pose suitable for a fashion catalogue.",
+      'Walking': "Generates a dynamic pose as if the person is mid-stride.",
+      // FIX: Use unique key 'Try On: Sitting' to avoid conflict.
+      'Try On: Sitting': "Generates a natural sitting pose on a simple surface.",
     }
   },
   ko: {
@@ -167,6 +189,16 @@ const translations = {
       errorGenerate: "AI가 이미지를 생성하지 못했습니다. 다른 이미지를 사용하거나 옵션을 조정해보세요.",
       errorTransform: "이미지를 변환하는 중 오류가 발생했습니다. 다시 시도해주세요.",
       
+      // Pose Options
+      poseSectionTitle: "포즈 선택",
+      'Original Pose': "원본 포즈",
+      // FIX: Use unique key 'Try On: Standing' to avoid conflict.
+      'Try On: Standing': "서있는 포즈",
+      'Fashion Model': "패션 모델",
+      'Walking': "걷는 포즈",
+      // FIX: Use unique key 'Try On: Sitting' to avoid conflict.
+      'Try On: Sitting': "앉은 포즈",
+
       customizeTitle: "피규어 커스터마이징",
       coreConceptSection: "핵심 컨셉",
       physicalPropertiesSection: "물리적 속성",
@@ -186,7 +218,8 @@ const translations = {
       'Matte': '무광', 'Glossy': '유광', 'Metallic': '메탈릭', 'Weathered': '웨더링',
       'None': '없음', 'Simple Disc': '단순 디스크', 'Themed Diorama': '테마 디오라마', 'Floating': '플로팅',
       'PVC/ABS': 'PVC/ABS', 'Resin': '레진', 'Polystone': '폴리스톤', 'Metal': '메탈',
-      'Standing': '서있는 자세', 'Dynamic/Action': '역동적/액션', 'Sitting': '앉은 자세',
+      // FIX: Use unique key 'Figure: Standing' to avoid conflict.
+      'Figure: Standing': '서있는 자세', 'Dynamic/Action': '역동적/액션', 'Figure: Sitting': '앉은 자세',
       'Original Colors': '원본 색상', 'Monochrome': '단색', 'Vibrant': '선명한 색상',
       'Standard': '표준', 'High': '높음', 'Ultra': '최상',
       'Studio': '스튜디오', 'Bookshelf': '책장', 'Desktop': '책상', 'Showcase': '장식장',
@@ -213,9 +246,11 @@ const translations = {
       'Resin': '미세한 디테일을 표현하기 위한 고품질 소재로, 더 무겁고 깨지기 쉽습니다.',
       'Polystone': '무겁고 내구성이 있는 돌과 같은 질감의 합성물입니다.',
       'Metal': '프리미엄 무게감과 느낌을 위해 다이캐스트 금속 부품을 사용합니다.',
-      'Standing': '안정적이고 중립적인 박물관 스타일의 서있는 자세입니다.',
+      // FIX: Use unique key 'Figure: Standing' to avoid conflict.
+      'Figure: Standing': '안정적이고 중립적인 박물관 스타일의 서있는 자세입니다.',
       'Dynamic/Action': '점프하거나 공격하는 등 움직이는 중간을 포착한 역동적인 포즈입니다.',
-      'Sitting': '편안하게 앉거나 무릎을 꿇은 자세입니다.',
+      // FIX: Use unique key 'Figure: Sitting' to avoid conflict.
+      'Figure: Sitting': '편안하게 앉거나 무릎을 꿇은 자세입니다.',
       'Original Colors': '업로드된 이미지의 색상 팔레트를 사용합니다.',
       'Monochrome': '피규어를 그레이스케일과 같은 단일 색상 구성으로 렌더링합니다.',
       'Vibrant': '원본 색상을 더욱 채도 높고 눈에 띄게 향상시킵니다.',
@@ -226,6 +261,15 @@ const translations = {
       'Bookshelf': '아늑한 느낌을 주기 위해 피규어를 책장 위 책들 사이에 배치합니다.',
       'Desktop': '키보드나 모니터 같은 소품이 있는 현대적인 책상 환경입니다.',
       'Showcase': '드라마틱한 조명이 있는 유리 장식장 내부입니다.',
+
+      // Pose Options descriptions
+      'Original Pose': "업로드된 사람 사진의 포즈를 유지합니다.",
+      // FIX: Use unique key 'Try On: Standing' to avoid conflict.
+      'Try On: Standing': "표준적인 중립 서있는 포즈를 생성합니다.",
+      'Fashion Model': "패션 카탈로그에 적합한 스타일리시한 포즈를 생성합니다.",
+      'Walking': "마치 걷는 도중인 것처럼 역동적인 포즈를 생성합니다.",
+      // FIX: Use unique key 'Try On: Sitting' to avoid conflict.
+      'Try On: Sitting': "단순한 표면에 자연스럽게 앉아있는 포즈를 생성합니다.",
     }
   }
 };

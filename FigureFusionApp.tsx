@@ -15,7 +15,8 @@ const initialFigureOptions: Omit<FigureOptions, 'mode'> = {
   texture: 'Matte',
   base: 'Simple Disc',
   material: 'Polystone',
-  pose: 'Standing',
+  // FIX: Use new unambiguous pose value.
+  pose: 'Figure: Standing',
   colorScheme: 'Original Colors',
   detailing: 'Standard',
   background: 'Desktop',

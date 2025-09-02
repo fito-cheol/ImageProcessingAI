@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Tooltip } from './Tooltip';
@@ -10,7 +11,8 @@ export type FigureArtStyle = 'Anime' | 'Realistic' | 'Chibi/SD' | 'Stylized';
 export type FigureTexture = 'Matte' | 'Glossy' | 'Metallic' | 'Weathered';
 export type FigureBase = 'None' | 'Simple Disc' | 'Themed Diorama' | 'Floating';
 export type FigureMaterial = 'PVC/ABS' | 'Resin' | 'Polystone' | 'Metal';
-export type FigurePose = 'Standing' | 'Dynamic/Action' | 'Sitting';
+// FIX: Disambiguate pose types to avoid key collisions in translation files.
+export type FigurePose = 'Figure: Standing' | 'Dynamic/Action' | 'Figure: Sitting';
 export type FigureColorScheme = 'Original Colors' | 'Monochrome' | 'Vibrant';
 export type FigureDetailing = 'Standard' | 'High' | 'Ultra';
 export type FigureBackground = 'Studio' | 'Bookshelf' | 'Desktop' | 'Showcase';
@@ -84,7 +86,8 @@ export const TransformOptions: React.FC<TransformOptionsProps> = ({ currentOptio
     const textures: readonly FigureTexture[] = ['Matte', 'Glossy', 'Metallic', 'Weathered'];
     const bases: readonly FigureBase[] = ['None', 'Simple Disc', 'Themed Diorama', 'Floating'];
     const materials: readonly FigureMaterial[] = ['PVC/ABS', 'Resin', 'Polystone', 'Metal'];
-    const poses: readonly FigurePose[] = ['Standing', 'Dynamic/Action', 'Sitting'];
+    // FIX: Use new unambiguous pose values.
+    const poses: readonly FigurePose[] = ['Figure: Standing', 'Dynamic/Action', 'Figure: Sitting'];
     const colorSchemes: readonly FigureColorScheme[] = ['Original Colors', 'Monochrome', 'Vibrant'];
     const detailings: readonly FigureDetailing[] = ['Standard', 'High', 'Ultra'];
     const backgrounds: readonly FigureBackground[] = ['Studio', 'Bookshelf', 'Desktop', 'Showcase'];
