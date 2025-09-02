@@ -177,6 +177,7 @@ export const transformImageToFigure = async (
 
 // FIX: Disambiguate pose types to avoid key collisions in translation files.
 export type TryOnPose = 'Original Pose' | 'Try On: Standing' | 'Fashion Model' | 'Walking' | 'Try On: Sitting';
+export type TryOnBackground = 'Original Background' | 'Studio' | 'Urban' | 'Nature' | 'Cafe';
 
 const getTryOnPoseInstruction = (pose: TryOnPose): string => {
     switch (pose) {
@@ -197,26 +198,44 @@ const getTryOnPoseInstruction = (pose: TryOnPose): string => {
     }
 }
 
-const createTryOnPrompt = (pose: TryOnPose): string => `
+const getTryOnBackgroundInstruction = (background: TryOnBackground): string => {
+    switch (background) {
+        case 'Original Background':
+            return "It is absolutely critical to use the background from the original person's image. You MUST completely REMOVE the original person from this background. Then, place the newly generated, fully-styled person into that empty background. The final result should look like a single, seamless photograph where only the newly-styled person exists in the original environment. There should be absolutely no ghosting, duplication, or remnants of the original person in the final image.";
+        case 'Studio':
+            return "The background of the final image must be a clean, simple, neutral studio setting (e.g., light gray, white) to focus on the person and the outfit.";
+        case 'Urban':
+            return "Generate a photorealistic and stylish urban background, such as a modern city street, an architectural feature, or against a graffiti wall. The lighting on the person must match the environment seamlessly.";
+        case 'Nature':
+            return "Generate a photorealistic and serene natural background, such as a beautiful park, a forest path, or a beach scene. The lighting on the person must be natural and match the outdoor environment.";
+        case 'Cafe':
+            return "Generate a photorealistic background of a cozy and modern café interior. The person should be believably integrated into the scene. Pay attention to realistic lighting and depth of field.";
+        default:
+            return "It is absolutely critical to preserve the background from the original person's image.";
+    }
+}
+
+const createTryOnPrompt = (pose: TryOnPose, background: TryOnBackground): string => `
 You are an expert AI fashion stylist. Your task is to dress the person from the first image with the clothing and accessories from the subsequent images.
 
 **Instructions:**
 1. The very first image provided is the person to be dressed. All subsequent images are clothing or accessory items.
 2. Analyze the person. If the image is not a full-body shot (e.g., only shows the upper body), you must realistically generate a full-body view of them. It is critical to maintain their original physical characteristics, face, and body proportions.
 3. **Pose Instruction:** ${getTryOnPoseInstruction(pose)}
-4. Digitally and seamlessly dress the person with ALL the provided items. The clothes must fit naturally on the person's body according to the specified pose.
-5. The final output must be a single, cohesive, photorealistic image of the person wearing the new outfit.
-6. The background of the final image must be a clean, simple, neutral studio setting to focus on the person and the outfit.
+4. **Background Instruction:** ${getTryOnBackgroundInstruction(background)}
+5. Digitally and seamlessly dress the person with ALL the provided items. The clothes must fit naturally on the person's body according to the specified pose.
+6. The final output must be a single, cohesive, photorealistic image of the person wearing the new outfit.
 7. Ensure the final image looks like a real photograph, not a digital composite or illustration. Realism is the top priority.
 `;
 
 export const virtualTryOn = async (
     person: { base64Data: string; mimeType: string }, 
     items: Array<{ base64Data: string; mimeType: string }>,
-    pose: TryOnPose
+    pose: TryOnPose,
+    background: TryOnBackground
 ): Promise<{imageUrl: string | null; text: string | null}> => {
   try {
-    const prompt = createTryOnPrompt(pose);
+    const prompt = createTryOnPrompt(pose, background);
     
     const parts = [
       { inlineData: { data: person.base64Data, mimeType: person.mimeType } },

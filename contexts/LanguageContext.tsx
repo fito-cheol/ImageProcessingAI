@@ -66,6 +66,13 @@ const translations = {
       'Walking': "Walking",
       // FIX: Use unique key 'Try On: Sitting' to avoid conflict.
       'Try On: Sitting': "Sitting",
+      
+      // Background Options
+      backgroundSectionTitle: "Choose a Background",
+      'Original Background': "Original",
+      'Urban': "Urban",
+      'Nature': "Nature",
+      'Cafe': "Café",
 
       // TransformOptions
       customizeTitle: "Customize Your Figure",
@@ -140,6 +147,12 @@ const translations = {
       'Walking': "Generates a dynamic pose as if the person is mid-stride.",
       // FIX: Use unique key 'Try On: Sitting' to avoid conflict.
       'Try On: Sitting': "Generates a natural sitting pose on a simple surface.",
+      
+      // Background Options descriptions
+      'Original Background': "Keeps the background from the original person's photo.",
+      'Urban': "A realistic city street or modern building scene.",
+      'Nature': "A realistic natural setting like a park, forest, or beach.",
+      'Cafe': "A cozy and stylish café interior.",
     }
   },
   ko: {
@@ -198,6 +211,13 @@ const translations = {
       'Walking': "걷는 포즈",
       // FIX: Use unique key 'Try On: Sitting' to avoid conflict.
       'Try On: Sitting': "앉은 포즈",
+      
+      // Background Options
+      backgroundSectionTitle: "배경 선택",
+      'Original Background': "원본 배경",
+      'Urban': "도시",
+      'Nature': "자연",
+      'Cafe': "카페",
 
       customizeTitle: "피규어 커스터마이징",
       coreConceptSection: "핵심 컨셉",
@@ -270,6 +290,12 @@ const translations = {
       'Walking': "마치 걷는 도중인 것처럼 역동적인 포즈를 생성합니다.",
       // FIX: Use unique key 'Try On: Sitting' to avoid conflict.
       'Try On: Sitting': "단순한 표면에 자연스럽게 앉아있는 포즈를 생성합니다.",
+
+      // Background Options descriptions
+      'Original Background': "원본 사람 사진의 배경을 유지합니다.",
+      'Urban': "사실적인 도시 거리나 현대적인 건물 장면입니다.",
+      'Nature': "공원, 숲, 해변과 같은 사실적인 자연 환경입니다.",
+      'Cafe': "아늑하고 세련된 카페 실내입니다.",
     }
   }
 };

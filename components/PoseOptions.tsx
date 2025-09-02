@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Tooltip } from './Tooltip';
-import { TryOnPose } from '../services/geminiService';
+import { TryOnPose, TryOnBackground } from '../services/geminiService';
 import { TranslationKey } from '../contexts/LanguageContext';
 
 interface OptionButtonProps<T> {
@@ -27,30 +27,50 @@ const OptionButton = <T extends string>({ option, label, description, isSelected
     </Tooltip>
 );
 
-interface PoseOptionsProps {
+interface TryOnOptionsProps {
     currentPose: TryOnPose;
     onPoseChange: (pose: TryOnPose) => void;
+    currentBackground: TryOnBackground;
+    onBackgroundChange: (background: TryOnBackground) => void;
 }
 
-export const PoseOptions: React.FC<PoseOptionsProps> = ({ currentPose, onPoseChange }) => {
+export const TryOnOptions: React.FC<TryOnOptionsProps> = ({ currentPose, onPoseChange, currentBackground, onBackgroundChange }) => {
     const { t, td } = useLanguage();
-    // FIX: Use new unambiguous pose values.
     const poses: readonly TryOnPose[] = ['Original Pose', 'Try On: Standing', 'Fashion Model', 'Walking', 'Try On: Sitting'];
+    const backgrounds: readonly TryOnBackground[] = ['Original Background', 'Studio', 'Urban', 'Nature', 'Cafe'];
 
     return (
-        <div className="max-w-3xl mx-auto mt-8 p-6 bg-gray-800/50 border border-gray-700 rounded-2xl">
-            <h3 className="text-center text-lg font-semibold text-gray-100 mb-4">{t('poseSectionTitle')}</h3>
-            <div className="flex flex-wrap gap-3 justify-center">
-                {poses.map((pose) => (
-                    <OptionButton
-                        key={pose}
-                        option={pose}
-                        label={t(pose as TranslationKey)}
-                        description={td(pose as any)}
-                        isSelected={currentPose === pose}
-                        onClick={onPoseChange}
-                    />
-                ))}
+        <div className="max-w-4xl mx-auto mt-8 p-6 bg-gray-800/50 border border-gray-700 rounded-2xl space-y-8">
+            <div>
+                <h3 className="text-center text-lg font-semibold text-gray-100 mb-4">{t('poseSectionTitle')}</h3>
+                <div className="flex flex-wrap gap-3 justify-center">
+                    {poses.map((pose) => (
+                        <OptionButton
+                            key={pose}
+                            option={pose}
+                            label={t(pose as TranslationKey)}
+                            description={td(pose as any)}
+                            isSelected={currentPose === pose}
+                            onClick={onPoseChange}
+                        />
+                    ))}
+                </div>
+            </div>
+            <div className="border-t border-gray-700"></div>
+            <div>
+                <h3 className="text-center text-lg font-semibold text-gray-100 mb-4">{t('backgroundSectionTitle')}</h3>
+                <div className="flex flex-wrap gap-3 justify-center">
+                    {backgrounds.map((background) => (
+                        <OptionButton
+                            key={background}
+                            option={background}
+                            label={t(background as TranslationKey)}
+                            description={td(background as any)}
+                            isSelected={currentBackground === background}
+                            onClick={onBackgroundChange}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     );

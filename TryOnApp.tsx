@@ -2,11 +2,11 @@ import React, { useState, useCallback } from 'react';
 import { Header } from './components/Header';
 import { ImageUploader } from './components/ImageUploader';
 import { Loader } from './components/Loader';
-import { virtualTryOn, TryOnPose } from './services/geminiService';
+import { virtualTryOn, TryOnPose, TryOnBackground } from './services/geminiService';
 import { fileToBase64 } from './utils/fileUtils';
 import { SparklesIcon } from './components/icons/SparklesIcon';
 import { useLanguage } from './contexts/LanguageContext';
-import { PoseOptions } from './components/PoseOptions';
+import { TryOnOptions } from './components/PoseOptions';
 
 const MAX_ITEMS = 4;
 
@@ -36,6 +36,7 @@ export const TryOnApp: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [pose, setPose] = useState<TryOnPose>('Original Pose');
+  const [background, setBackground] = useState<TryOnBackground>('Original Background');
   const { language, setLanguage, t } = useLanguage();
 
   const handlePersonUpload = (file: File) => {
@@ -66,6 +67,7 @@ export const TryOnApp: React.FC = () => {
       setError(null);
       setIsLoading(false);
       setPose('Original Pose');
+      setBackground('Original Background');
   };
 
   const handleGenerate = useCallback(async () => {
@@ -87,7 +89,7 @@ export const TryOnApp: React.FC = () => {
       const personData = await fileToBase64(personFile);
       const itemsData = await Promise.all(validItems.map(file => fileToBase64(file)));
       
-      const result = await virtualTryOn(personData, itemsData, pose);
+      const result = await virtualTryOn(personData, itemsData, pose, background);
       
       if (result.imageUrl) {
         setGeneratedImage(result.imageUrl);
@@ -104,7 +106,7 @@ export const TryOnApp: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [personFile, itemFiles, t, pose]);
+  }, [personFile, itemFiles, t, pose, background]);
   
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'ko' : 'en');
@@ -192,7 +194,12 @@ export const TryOnApp: React.FC = () => {
 
         {personFile && !isLoading && (
           <>
-            <PoseOptions currentPose={pose} onPoseChange={setPose} />
+            <TryOnOptions
+              currentPose={pose}
+              onPoseChange={setPose}
+              currentBackground={background}
+              onBackgroundChange={setBackground}
+            />
             <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
                 <button
                     onClick={handleGenerate}
