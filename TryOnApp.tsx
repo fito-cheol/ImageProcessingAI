@@ -124,9 +124,11 @@ export const TryOnApp: React.FC = () => {
         
         {isLoading && <Loader />}
         
-        <div className="max-w-7xl mx-auto w-full space-y-12 flex-grow flex flex-col">
-            {/* --- INPUTS --- */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="max-w-7xl mx-auto w-full flex-grow">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            
+            {/* --- LEFT PANEL: INPUTS --- */}
+            <div className="space-y-8">
                 {/* Person Image */}
                 <div>
                     <h3 className="text-lg font-semibold text-gray-400 mb-3 text-center">{t('personImageTitle')}</h3>
@@ -163,16 +165,28 @@ export const TryOnApp: React.FC = () => {
                 </div>
             </div>
 
-            {/* --- OUTPUT --- */}
-            {generatedImage && !isLoading && (
-              <div className="w-full flex flex-col items-center pt-8 border-t border-gray-700/50">
-                  <h3 className="text-2xl font-bold text-gray-300 mb-4">{t('generatedResultTitle')}</h3>
-                  <div className="w-full max-w-2xl aspect-square rounded-xl bg-gray-800 shadow-lg overflow-hidden relative">
-                      <img src={generatedImage} alt={t('generatedResultTitle')} className="w-full h-full object-contain" />
-                  </div>
-              </div>
-            )}
+            {/* --- RIGHT PANEL: OUTPUT --- */}
+            <div className="w-full flex flex-col items-center lg:sticky lg:top-12">
+                <h3 className="text-2xl font-bold text-gray-300 mb-4">{t('generatedResultTitle')}</h3>
+                <div className="w-full max-w-2xl aspect-square rounded-xl bg-gray-800 shadow-lg overflow-hidden relative">
+                     {generatedImage && !isLoading ? (
+                        <img src={generatedImage} alt={t('generatedResultTitle')} className="w-full h-full object-contain" />
+                    ) : (
+                       <div className="w-full h-full flex items-center justify-center border-2 border-dashed border-gray-700 rounded-xl">
+                          <div className="text-center text-gray-500">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                              <p className="mt-2 text-sm">{t('placeholderText')}</p>
+                          </div>
+                       </div>
+                    )}
+                </div>
+            </div>
+
+          </div>
         </div>
+
 
         {personFile && !isLoading && (
           <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">

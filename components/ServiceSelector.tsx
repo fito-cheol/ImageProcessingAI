@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
-const makeFigureImage = 'https://drive.google.com/uc?export=view&id=1TVJqlkWJ8L3X-16TRM2CfdH0fvGq8uT0';
-const humanClothImage = 'https://drive.google.com/uc?export=view&id=1b1gpis2vpf2hAR_FPWAqq2Za0jzUle9A';
+const makeFigureImage = 'https://lh3.google.com/u/0/d/1TVJqlkWJ8L3X-16TRM2CfdH0fvGq8uT0=w1920-h945-iv1?auditContext=prefetch';
+const humanClothImage = 'https://lh3.google.com/u/0/d/1lGroK1OmZEYlv2iBJF-7BU64mOudX5fS=w1920-h945-iv2?auditContext=prefetch';
 
 const CubeIcon: React.FC = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -29,22 +29,24 @@ interface ServiceButtonProps {
 const ServiceButton: React.FC<ServiceButtonProps> = ({ title, description, icon, onClick, imageUrl }) => (
     <button 
         onClick={onClick}
-        className="group relative overflow-hidden bg-gray-900 border border-gray-700 rounded-2xl text-left transition-all duration-300 transform hover:scale-105 hover:border-indigo-500/50 shadow-lg aspect-[4/3]"
+        className="group flex flex-col bg-gray-800/50 border border-gray-700 rounded-2xl text-left transition-all duration-300 transform hover:scale-[1.02] hover:border-indigo-500/50 shadow-lg overflow-hidden"
     >
-        <img 
-            src={imageUrl} 
-            alt={title} 
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-            aria-hidden="true"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent" aria-hidden="true"></div>
+        <div className="bg-gray-900 overflow-hidden">
+            <img 
+                src={imageUrl} 
+                alt={title} 
+                className="w-full h-auto max-h-[60vh] object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+        </div>
         
-        <div className="relative flex flex-col h-full justify-end p-6 md:p-8">
-            <div className="mb-4 transition-transform duration-300 group-hover:scale-110 w-fit">
-                {icon}
+        <div className="p-6 md:p-8">
+            <div className="flex items-center gap-4 mb-4">
+                 <div className="transition-transform duration-300 group-hover:scale-110 w-fit">
+                    {icon}
+                </div>
+                <h3 className="text-2xl font-bold text-gray-100">{title}</h3>
             </div>
-            <h3 className="text-2xl font-bold text-gray-100 mb-2">{title}</h3>
-            <p className="text-gray-300 max-w-xs">{description}</p>
+            <p className="text-gray-300 max-w-lg">{description}</p>
         </div>
     </button>
 );
@@ -62,7 +64,7 @@ export const ServiceSelector: React.FC<ServiceSelectorProps> = ({ onSelect }) =>
                 {t('selectServiceTitle')}
             </h1>
         </header>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="flex flex-col gap-8">
             <ServiceButton 
                 title={t('figureFusionTitle')}
                 description={t('figureFusionDescription')}
