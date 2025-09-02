@@ -1,4 +1,3 @@
-
 import { GoogleGenAI, Modality } from "@google/genai";
 import { FigureOptions } from "../components/TransformOptions";
 
@@ -166,5 +165,63 @@ export const transformImageToFigure = async (
         throw new Error(`Gemini API Error: ${error.message}`);
     }
     throw new Error("An unknown error occurred while transforming the image with the Gemini API.");
+  }
+};
+
+const createTryOnPrompt = (): string => `
+You are an expert AI fashion stylist. Your task is to dress the person from the first image with the clothing and accessories from the subsequent images.
+
+**Instructions:**
+1. The very first image provided is the person to be dressed. All subsequent images are clothing or accessory items.
+2. Analyze the person. If the image is not a full-body shot (e.g., only shows the upper body), you must realistically generate a full-body view of them in a natural standing pose. It is critical to maintain their original physical characteristics, face, and body proportions.
+3. Digitally and seamlessly dress the person with ALL the provided items. The clothes must fit naturally on the person's generated full-body figure.
+4. The final output must be a single, cohesive, photorealistic image of the person wearing the new outfit.
+5. The background of the final image must be a clean, simple, neutral studio setting to focus on the person and the outfit.
+6. Ensure the final image looks like a real photograph, not a digital composite or illustration. Realism is the top priority.
+`;
+
+export const virtualTryOn = async (
+    person: { base64Data: string; mimeType: string }, 
+    items: Array<{ base64Data: string; mimeType: string }>
+): Promise<{imageUrl: string | null; text: string | null}> => {
+  try {
+    const prompt = createTryOnPrompt();
+    
+    const parts = [
+      { inlineData: { data: person.base64Data, mimeType: person.mimeType } },
+      ...items.map(item => ({ inlineData: { data: item.base64Data, mimeType: item.mimeType } })),
+      { text: prompt }
+    ];
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-2.5-flash-image-preview',
+      contents: { parts },
+      config: {
+        responseModalities: [Modality.IMAGE, Modality.TEXT],
+      },
+    });
+    
+    let imageUrl: string | null = null;
+    let text: string | null = null;
+
+    if (response.candidates && response.candidates.length > 0) {
+        for (const part of response.candidates[0].content.parts) {
+            if (part.inlineData) {
+              const base64ImageBytes = part.inlineData.data;
+              const imageMimeType = part.inlineData.mimeType;
+              imageUrl = `data:${imageMimeType};base64,${base64ImageBytes}`;
+            } else if (part.text) {
+              text = part.text;
+            }
+        }
+    }
+
+    return { imageUrl, text };
+  } catch (error) {
+    console.error("Error calling Gemini API for Virtual Try-On:", error);
+    if (error instanceof Error) {
+        throw new Error(`Gemini API Error: ${error.message}`);
+    }
+    throw new Error("An unknown error occurred during the virtual try-on process.");
   }
 };

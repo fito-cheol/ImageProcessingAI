@@ -1,9 +1,10 @@
-
 import React, { useCallback, useState } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage, TranslationKey } from '../contexts/LanguageContext';
 
 interface ImageUploaderProps {
   onImageUpload: (file: File) => void;
+  titleKey?: TranslationKey;
+  subtitleKey?: TranslationKey;
 }
 
 const UploadIcon: React.FC = () => (
@@ -13,7 +14,7 @@ const UploadIcon: React.FC = () => (
 );
 
 
-export const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload }) => {
+export const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload, titleKey = 'uploaderTitle', subtitleKey = 'uploaderSubtitle' }) => {
     const [isDragging, setIsDragging] = useState(false);
     const { t } = useLanguage();
 
@@ -56,9 +57,9 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload }) =
         <div className="text-center">
             <UploadIcon />
           <h2 className="text-xl font-semibold text-gray-200">
-            {t('uploaderTitle')}
+            {t(titleKey)}
           </h2>
-          <p className="text-sm text-gray-500 mt-1">{t('uploaderSubtitle')}</p>
+          <p className="text-sm text-gray-500 mt-1">{t(subtitleKey)}</p>
         </div>
         <input id="file-upload" name="file-upload" type="file" className="sr-only" accept="image/png, image/jpeg, image/webp" onChange={handleFileChange} />
       </label>

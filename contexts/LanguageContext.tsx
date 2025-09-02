@@ -1,38 +1,62 @@
-
 import React, { createContext, useState, useContext, ReactNode } from 'react';
-
-type Language = 'en' | 'ko';
-type TranslationKey = keyof typeof translations.en.ui;
-type DescriptionKey = keyof typeof translations.en.descriptions;
 
 const translations = {
   en: {
     ui: {
+      // Service Selector
+      selectServiceTitle: "Choose a Service",
+      figureFusionTitle: "Figure Fusion AI",
+      figureFusionDescription: "Turn photos into collectible figures.",
+      tryOnTitle: "Virtual Try-On AI",
+      tryOnDescription: "Style a person with clothes from images.",
+      backButtonLabel: "Go Back",
+
       // Header
       headerTitle: "Figure Fusion AI",
       headerSubtitle: "Upload a photo and our AI will magically transform it into a stunning, collectible-style figure.",
+      
+      // Try-On Header
+      tryOnHeaderTitle: "Virtual Try-On AI",
+      tryOnHeaderSubtitle: "Upload a person and clothes to see them styled.",
+
       // ImageUploader
       uploaderTitle: "Drag & drop an image or click to upload",
       uploaderSubtitle: "PNG, JPG, or WEBP. High resolution recommended.",
+      uploadPersonTitle: "Upload a photo of a person",
+      uploadPersonSubtitle: "A clear, full or half-body shot works best.",
+      uploadItemText: "Add item",
+
       // ResultDisplay
       originalImageTitle: "Original Image",
       generatedImageTitle: "Figure & Package Shot",
       placeholderText: "AI generation will appear here",
+
+      // Try-On Display
+      personImageTitle: "Person",
+      clothingItemsTitle: "Clothing & Accessories (1-4 items)",
+      generatedResultTitle: "Styled Result",
+
       // Buttons
       transformButton: "Transform to Figure",
+      generateButton: "Generate Style",
       regenerateButton: "Re-generate",
       startOverButton: "Start Over",
+
       // Loader messages
       loaderMsg1: "Warming up the AI's creative circuits...",
       loaderMsg2: "Applying digital paint and polish...",
       loaderMsg3: "Crafting your miniature masterpiece...",
       loaderMsg4: "Shrinking pixels to figure size...",
       loaderMsg5: "This can take a moment, great art needs time.",
+
       // Errors
       errorTitle: "Error",
       errorUpload: "Please upload an image first.",
+      errorPerson: "Please upload a photo of a person.",
+      errorItems: "Please upload at least one clothing item.",
       errorGenerate: "The AI could not generate an image. Please try a different image or adjust the options.",
       errorTransform: "An error occurred while transforming the image. Please try again.",
+      
       // TransformOptions
       customizeTitle: "Customize Your Figure",
       coreConceptSection: "Core Concept",
@@ -98,25 +122,51 @@ const translations = {
   },
   ko: {
     ui: {
+      selectServiceTitle: "서비스 선택",
+      figureFusionTitle: "피규어 퓨전 AI",
+      figureFusionDescription: "사진을 수집용 피규어로 변환합니다.",
+      tryOnTitle: "가상 피팅 AI",
+      tryOnDescription: "다른 이미지의 옷으로 사람을 스타일링합니다.",
+      backButtonLabel: "뒤로 가기",
+
       headerTitle: "피규어 퓨전 AI",
       headerSubtitle: "사진을 업로드하면 AI가 마법처럼 멋진 수집가 스타일의 피규어로 변환해 드립니다.",
+      
+      tryOnHeaderTitle: "가상 피팅 AI",
+      tryOnHeaderSubtitle: "사람과 옷 사진을 업로드하여 스타일링된 모습을 확인하세요.",
+
       uploaderTitle: "이미지를 드래그 앤 드롭하거나 클릭하여 업로드하세요",
       uploaderSubtitle: "PNG, JPG, 또는 WEBP. 고해상도를 권장합니다.",
+      uploadPersonTitle: "사람 사진 업로드",
+      uploadPersonSubtitle: "선명한 전신 또는 반신 사진이 가장 좋습니다.",
+      uploadItemText: "아이템 추가",
+
       originalImageTitle: "원본 이미지",
       generatedImageTitle: "피규어 & 패키지 샷",
       placeholderText: "AI 생성 결과가 여기에 표시됩니다",
+      
+      personImageTitle: "사람",
+      clothingItemsTitle: "의류 및 액세서리 (1-4개)",
+      generatedResultTitle: "스타일링 결과",
+
       transformButton: "피규어로 변환하기",
+      generateButton: "스타일 생성",
       regenerateButton: "다시 생성하기",
       startOverButton: "처음부터 시작",
+
       loaderMsg1: "AI의 창의 회로를 예열 중입니다...",
       loaderMsg2: "디지털 페인트와 광택을 적용 중입니다...",
       loaderMsg3: "당신의 미니어처 걸작을 제작 중입니다...",
       loaderMsg4: "픽셀을 피규어 크기로 줄이는 중입니다...",
       loaderMsg5: "훌륭한 예술에는 시간이 필요합니다. 잠시만 기다려주세요.",
+
       errorTitle: "오류",
       errorUpload: "먼저 이미지를 업로드해주세요.",
+      errorPerson: "사람 사진을 업로드해주세요.",
+      errorItems: "하나 이상의 의류 아이템을 업로드해주세요.",
       errorGenerate: "AI가 이미지를 생성하지 못했습니다. 다른 이미지를 사용하거나 옵션을 조정해보세요.",
       errorTransform: "이미지를 변환하는 중 오류가 발생했습니다. 다시 시도해주세요.",
+      
       customizeTitle: "피규어 커스터마이징",
       coreConceptSection: "핵심 컨셉",
       physicalPropertiesSection: "물리적 속성",
@@ -180,6 +230,13 @@ const translations = {
   }
 };
 
+type TranslationObject = typeof translations.en.ui;
+export type TranslationKey = keyof TranslationObject;
+type DescriptionKey = keyof typeof translations.en.descriptions;
+
+// Fix: Define and export the Language type.
+export type Language = keyof typeof translations;
+
 interface LanguageContextType {
     language: Language;
     setLanguage: (lang: Language) => void;
@@ -197,7 +254,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const t = (key: TranslationKey): string => {
-        return translations[language].ui[key] || translations.en.ui[key];
+        return translations[language].ui[key] || translations.en.ui[key] || key;
     };
     
     const td = (key: DescriptionKey): string => {
