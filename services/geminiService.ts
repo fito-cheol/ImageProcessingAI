@@ -326,25 +326,32 @@ export const generateSoccerUniform = async (
   try {
     const prompt = createSoccerUniformPrompt(options);
 
-    const response = await ai.models.generateImages({
-        model: 'imagen-4.0-generate-001',
-        prompt: prompt,
+    const response = await ai.models.generateContent({
+        model: 'gemini-2.5-flash-image-preview',
+        contents: {
+            parts: [{ text: prompt }]
+        },
         config: {
-          numberOfImages: 1,
-          outputMimeType: 'image/jpeg',
-          aspectRatio: '1:1',
+          responseModalities: [Modality.IMAGE, Modality.TEXT],
         },
     });
 
     let imageUrl: string | null = null;
+    let text: string | null = null;
     
-    if (response.generatedImages && response.generatedImages.length > 0) {
-        const base64ImageBytes: string = response.generatedImages[0].image.imageBytes;
-        imageUrl = `data:image/jpeg;base64,${base64ImageBytes}`;
+    if (response.candidates && response.candidates.length > 0) {
+        for (const part of response.candidates[0].content.parts) {
+            if (part.inlineData) {
+              const base64ImageBytes = part.inlineData.data;
+              const imageMimeType = part.inlineData.mimeType;
+              imageUrl = `data:${imageMimeType};base64,${base64ImageBytes}`;
+            } else if (part.text) {
+              text = part.text;
+            }
+        }
     }
 
-    // generateImages doesn't return text, so we return null for text.
-    return { imageUrl, text: null };
+    return { imageUrl, text };
 
   } catch (error) {
     console.error("Error calling Gemini API for Soccer Uniform:", error);
