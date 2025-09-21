@@ -10,6 +10,8 @@ const translations = {
       tryOnTitle: "Virtual Try-On AI",
       tryOnDescription: "Style a person with clothes from images.",
       backButtonLabel: "Go Back",
+      soccerUniformTitle: "Soccer Uniform AI",
+      soccerUniformDescription: "Design a custom soccer uniform with detailed options.",
 
       // Header
       headerTitle: "Figure Fusion AI",
@@ -18,6 +20,10 @@ const translations = {
       // Try-On Header
       tryOnHeaderTitle: "Virtual Try-On AI",
       tryOnHeaderSubtitle: "Upload a person and clothes to see them styled.",
+
+      // Soccer Header
+      soccerHeaderTitle: "Soccer Uniform Designer",
+      soccerHeaderSubtitle: "Create your unique team kit. Specify colors, patterns, logos, and more to generate a professional soccer uniform.",
 
       // ImageUploader
       uploaderTitle: "Drag & drop an image or click to upload",
@@ -29,6 +35,7 @@ const translations = {
       // ResultDisplay
       originalImageTitle: "Original Image",
       generatedImageTitle: "Figure & Package Shot",
+      generatedUniformTitle: "Generated Uniform",
       placeholderText: "AI generation will appear here",
 
       // Try-On Display
@@ -100,6 +107,52 @@ const translations = {
       'Original Colors': 'Original Colors', 'Monochrome': 'Monochrome', 'Vibrant': 'Vibrant',
       'Standard': 'Standard', 'High': 'High', 'Ultra': 'Ultra',
       'Studio': 'Studio', 'Bookshelf': 'Bookshelf', 'Desktop': 'Desktop', 'Showcase': 'Showcase',
+
+      // Soccer Uniform Options
+      jerseyOptions: "Jersey Options (Top)",
+      shortsOptions: "Shorts Options (Bottom)",
+      renderOptions: "Render Options",
+      mainColor: "Main Color",
+      accentColor: "Accent Color",
+      pattern: "Pattern",
+      logoTeam: "Team Logo (Description)",
+      logoSponsor: "Sponsor Logo (Description)",
+      playerNumber: "Number",
+      playerName: "Name",
+      fontStyle: "Font Style",
+      neckline: "Neckline",
+      sleeves: "Sleeves",
+      fit: "Fit",
+      material: "Material",
+      length: "Length",
+      waistband: "Waistband",
+      view: "View",
+      style: "Style",
+      'Stripes': 'Stripes',
+      'Checkered': 'Checkered',
+      'Gradient': 'Gradient',
+      'Bold': 'Bold',
+      'Italic': 'Italic',
+      'Futuristic': 'Futuristic',
+      'V-Neck': 'V-Neck',
+      'Round Neck': 'Round Neck',
+      'Collar': 'Collar',
+      'Short': 'Short',
+      'Long': 'Long',
+      'Slim Fit': 'Slim Fit',
+      'Athletic Cut': 'Athletic Cut',
+      'Regular': 'Regular',
+      'Breathable Polyester': 'Breathable Polyester',
+      'Moisture-Wicking': 'Moisture-Wicking',
+      'Side Stripes': 'Side Stripes',
+      'Mid-thigh': 'Mid-thigh',
+      'Elastic with Drawstring': 'Elastic with Drawstring',
+      'Loose Fit': 'Loose Fit',
+      'Front View': 'Front View',
+      '3/4 View': '3/4 View',
+      'Full Body View': 'Full Body View',
+      'Photorealistic': 'Photorealistic',
+      '3D Style': '3D Style',
     },
     descriptions: {
       '1/12': 'Mini scale (approx. 10-15cm), perfect for desktops.',
@@ -163,12 +216,17 @@ const translations = {
       tryOnTitle: "가상 피팅 AI",
       tryOnDescription: "다른 이미지의 옷으로 사람을 스타일링합니다.",
       backButtonLabel: "뒤로 가기",
+      soccerUniformTitle: "축구 유니폼 AI",
+      soccerUniformDescription: "상세한 옵션으로 맞춤형 축구 유니폼을 디자인하세요.",
 
       headerTitle: "피규어 퓨전 AI",
       headerSubtitle: "사진을 업로드하면 AI가 마법처럼 멋진 수집가 스타일의 피규어로 변환해 드립니다.",
       
       tryOnHeaderTitle: "가상 피팅 AI",
       tryOnHeaderSubtitle: "사람과 옷 사진을 업로드하여 스타일링된 모습을 확인하세요.",
+      
+      soccerHeaderTitle: "축구 유니폼 디자이너",
+      soccerHeaderSubtitle: "팀의 고유한 유니폼을 만드세요. 색상, 패턴, 로고 등을 지정하여 전문적인 축구 유니폼을 생성합니다.",
 
       uploaderTitle: "이미지를 드래그 앤 드롭하거나 클릭하여 업로드하세요",
       uploaderSubtitle: "PNG, JPG, 또는 WEBP. 고해상도를 권장합니다.",
@@ -178,6 +236,7 @@ const translations = {
 
       originalImageTitle: "원본 이미지",
       generatedImageTitle: "피규어 & 패키지 샷",
+      generatedUniformTitle: "생성된 유니폼",
       placeholderText: "AI 생성 결과가 여기에 표시됩니다",
       
       personImageTitle: "사람",
@@ -243,6 +302,52 @@ const translations = {
       'Original Colors': '원본 색상', 'Monochrome': '단색', 'Vibrant': '선명한 색상',
       'Standard': '표준', 'High': '높음', 'Ultra': '최상',
       'Studio': '스튜디오', 'Bookshelf': '책장', 'Desktop': '책상', 'Showcase': '장식장',
+
+      // Soccer Uniform Options
+      jerseyOptions: "상의(저지) 옵션",
+      shortsOptions: "하의(쇼츠) 옵션",
+      renderOptions: "렌더링 옵션",
+      mainColor: "주요 색상",
+      accentColor: "보조 색상",
+      pattern: "패턴",
+      logoTeam: "팀 로고 (설명)",
+      logoSponsor: "스폰서 로고 (설명)",
+      playerNumber: "등번호",
+      playerName: "선수 이름",
+      fontStyle: "폰트 스타일",
+      neckline: "목 부분",
+      sleeves: "소매",
+      fit: "핏",
+      material: "재질",
+      length: "길이",
+      waistband: "허리 밴드",
+      view: "시점",
+      style: "스타일",
+      'Stripes': '줄무늬',
+      'Checkered': '체크',
+      'Gradient': '그라데이션',
+      'Bold': '굵게',
+      'Italic': '기울임꼴',
+      'Futuristic': '미래적',
+      'V-Neck': 'V넥',
+      'Round Neck': '라운드넥',
+      'Collar': '칼라',
+      'Short': '짧은 소매',
+      'Long': '긴 소매',
+      'Slim Fit': '슬림핏',
+      'Athletic Cut': '운동선수 핏',
+      'Regular': '레귤러',
+      'Breathable Polyester': '통기성 폴리에스터',
+      'Moisture-Wicking': '흡습성',
+      'Side Stripes': '측면 줄무늬',
+      'Mid-thigh': '허벅지 중간',
+      'Elastic with Drawstring': '고무줄과 끈',
+      'Loose Fit': '루즈핏',
+      'Front View': '정면',
+      '3/4 View': '3/4 뷰',
+      'Full Body View': '전신 뷰',
+      'Photorealistic': '사진처럼',
+      '3D Style': '3D 스타일',
     },
     descriptions: {
       '1/12': '미니 스케일(약 10-15cm), 데스크탑에 적합합니다.',
@@ -304,8 +409,7 @@ type TranslationObject = typeof translations.en.ui;
 export type TranslationKey = keyof TranslationObject;
 type DescriptionKey = keyof typeof translations.en.descriptions;
 
-// Fix: Define and export the Language type.
-export type Language = keyof typeof translations;
+export type Language = 'en' | 'ko';
 
 interface LanguageContextType {
     language: Language;

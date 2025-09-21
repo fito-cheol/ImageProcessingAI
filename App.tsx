@@ -3,9 +3,10 @@ import { useLanguage } from './contexts/LanguageContext';
 import { ServiceSelector } from './components/ServiceSelector';
 import { FigureFusionApp } from './FigureFusionApp';
 import { TryOnApp } from './TryOnApp';
+import { SoccerUniformApp } from './SoccerUniformApp';
 
 const App: React.FC = () => {
-    const [service, setService] = useState<'figure' | 'try-on' | null>(null);
+    const [service, setService] = useState<'figure' | 'try-on' | 'soccer' | null>(null);
     const { language, setLanguage, t } = useLanguage();
 
     const toggleLanguage = () => {
@@ -44,6 +45,7 @@ const App: React.FC = () => {
             {renderBackButton()}
             {service === 'figure' && <FigureFusionApp />}
             {service === 'try-on' && <TryOnApp />}
+            {service === 'soccer' && <SoccerUniformApp />}
         </div>
     );
 };

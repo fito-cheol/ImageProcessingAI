@@ -1,5 +1,6 @@
 import { GoogleGenAI, Modality } from "@google/genai";
 import { FigureOptions } from "../components/TransformOptions";
+import { SoccerUniformOptions } from "../components/SoccerUniformOptions";
 
 const API_KEY = process.env.API_KEY;
 
@@ -277,5 +278,79 @@ export const virtualTryOn = async (
         throw new Error(`Gemini API Error: ${error.message}`);
     }
     throw new Error("An unknown error occurred during the virtual try-on process.");
+  }
+};
+
+// --- Soccer Uniform Service ---
+
+const createSoccerUniformPrompt = (options: SoccerUniformOptions): string => {
+    const j = options.jersey;
+    const s = options.shorts;
+    const r = options.render;
+
+    const jerseyParts: string[] = [];
+    if (j.mainColor) jerseyParts.push(`${j.mainColor} jersey`);
+    if (j.accentColor) jerseyParts.push(`with ${j.accentColor} accents`);
+    if (j.pattern !== 'None') jerseyParts.push(`${j.pattern.toLowerCase()} pattern`);
+    if (j.neckline) jerseyParts.push(`${j.neckline.toLowerCase()} collar`);
+    if (j.sleeves) jerseyParts.push(`${j.sleeves.toLowerCase()} sleeves`);
+    if (j.fit) jerseyParts.push(`${j.fit.toLowerCase()}`);
+    if (j.material) jerseyParts.push(`${j.material.toLowerCase()} material`);
+    if (j.teamLogo) jerseyParts.push(`team logo '${j.teamLogo}' on chest`);
+    if (j.sponsorLogo) jerseyParts.push(`sponsor logo '${j.sponsorLogo}' on front`);
+    if (j.playerNumber) {
+        let numberStr = `number ${j.playerNumber} on back`;
+        if (j.fontStyle) numberStr += ` in ${j.fontStyle.toLowerCase()} font`;
+        jerseyParts.push(numberStr);
+    }
+    if (j.playerName) jerseyParts.push(`player name '${j.playerName}' above number`);
+
+    const shortsParts: string[] = [];
+    if (s.mainColor) shortsParts.push(`matching ${s.mainColor} shorts`);
+    if (s.accentColor && s.pattern === 'Side Stripes') shortsParts.push(`with ${s.accentColor} side stripes`);
+    if (s.length) shortsParts.push(`${s.length.toLowerCase()} length`);
+    if (s.waistband) shortsParts.push(`${s.waistband.toLowerCase()}`);
+    if (s.fit) shortsParts.push(`${s.fit.toLowerCase()}`);
+    if (s.teamLogo) shortsParts.push(`team logo on thigh`);
+
+    const jerseyPrompt = jerseyParts.join(', ');
+    const shortsPrompt = shortsParts.join(', ');
+    const renderPrompt = `${r.view.toLowerCase()}, ${r.style.toLowerCase()}, high detail, high resolution, on a mannequin or plain background`;
+
+    return `A complete soccer uniform set: ${jerseyPrompt}; ${shortsPrompt}; ${renderPrompt}.`;
+};
+
+export const generateSoccerUniform = async (
+    options: SoccerUniformOptions
+): Promise<{imageUrl: string | null; text: string | null}> => {
+  try {
+    const prompt = createSoccerUniformPrompt(options);
+
+    const response = await ai.models.generateImages({
+        model: 'imagen-4.0-generate-001',
+        prompt: prompt,
+        config: {
+          numberOfImages: 1,
+          outputMimeType: 'image/jpeg',
+          aspectRatio: '1:1',
+        },
+    });
+
+    let imageUrl: string | null = null;
+    
+    if (response.generatedImages && response.generatedImages.length > 0) {
+        const base64ImageBytes: string = response.generatedImages[0].image.imageBytes;
+        imageUrl = `data:image/jpeg;base64,${base64ImageBytes}`;
+    }
+
+    // generateImages doesn't return text, so we return null for text.
+    return { imageUrl, text: null };
+
+  } catch (error) {
+    console.error("Error calling Gemini API for Soccer Uniform:", error);
+    if (error instanceof Error) {
+        throw new Error(`Gemini API Error: ${error.message}`);
+    }
+    throw new Error("An unknown error occurred during the soccer uniform generation.");
   }
 };

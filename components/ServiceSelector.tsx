@@ -1,8 +1,11 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { SoccerBallIcon } from './icons/SoccerBallIcon';
 
 const makeFigureImage = 'https://lh3.google.com/u/0/d/1TVJqlkWJ8L3X-16TRM2CfdH0fvGq8uT0=w1920-h945-iv1?auditContext=prefetch';
 const humanClothImage = 'https://lh3.google.com/u/0/d/1lGroK1OmZEYlv2iBJF-7BU64mOudX5fS=w1920-h945-iv2?auditContext=prefetch';
+const soccerUniformImage = 'https://lh3.google.com/u/0/d/18CBXS8roCba8VbVDmfAMClBzbozoUwxM=w1297-h945-iv1?auditContext=prefetch';
+
 
 const CubeIcon: React.FC = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -52,7 +55,7 @@ const ServiceButton: React.FC<ServiceButtonProps> = ({ title, description, icon,
 );
 
 interface ServiceSelectorProps {
-    onSelect: (service: 'figure' | 'try-on') => void;
+    onSelect: (service: 'figure' | 'try-on' | 'soccer') => void;
 }
 
 export const ServiceSelector: React.FC<ServiceSelectorProps> = ({ onSelect }) => {
@@ -78,6 +81,13 @@ export const ServiceSelector: React.FC<ServiceSelectorProps> = ({ onSelect }) =>
                 icon={<ShirtIcon />}
                 onClick={() => onSelect('try-on')}
                 imageUrl={humanClothImage}
+            />
+            <ServiceButton 
+                title={t('soccerUniformTitle')}
+                description={t('soccerUniformDescription')}
+                icon={<SoccerBallIcon />}
+                onClick={() => onSelect('soccer')}
+                imageUrl={soccerUniformImage}
             />
         </div>
     </div>
