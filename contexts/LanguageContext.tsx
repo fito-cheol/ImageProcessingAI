@@ -111,119 +111,82 @@ const translations = {
       // Soccer Uniform Options
       jerseyOptions: "Jersey Options (Top)",
       shortsOptions: "Shorts Options (Bottom)",
-      renderOptions: "Render Options",
+      renderOptions: "Rendering Options",
       mainColor: "Main Color",
       accentColor: "Accent Color",
       pattern: "Pattern",
-      logoTeam: "Team Logo (Description)",
-      logoSponsor: "Sponsor Logo (Description)",
-      playerNumber: "Number",
-      playerName: "Name",
+      logoTeam: "Team Logo",
+      logoSponsor: "Sponsor Logo",
+      playerNumber: "Player Number",
+      playerName: "Player Name",
       fontStyle: "Font Style",
       neckline: "Neckline",
-      sleeves: "Sleeves",
       fit: "Fit",
       material: "Material",
-      length: "Length",
-      waistband: "Waistband",
       view: "View",
       style: "Style",
-      'Stripes': 'Stripes',
-      'Checkered': 'Checkered',
-      'Gradient': 'Gradient',
-      'Bold': 'Bold',
-      'Italic': 'Italic',
-      'Futuristic': 'Futuristic',
-      'V-Neck': 'V-Neck',
-      'Round Neck': 'Round Neck',
-      'Collar': 'Collar',
-      'Short': 'Short',
-      'Long': 'Long',
-      'Slim Fit': 'Slim Fit',
-      'Athletic Cut': 'Athletic Cut',
-      'Regular': 'Regular',
-      'Breathable Polyester': 'Breathable Polyester',
-      'Moisture-Wicking': 'Moisture-Wicking',
+      generationModel: "Generation Model",
+      'Stripes': 'Stripes', 'Checkered': 'Checkered', 'Gradient': 'Gradient',
+      'Bold': 'Bold', 'Italic': 'Italic', 'Futuristic': 'Futuristic',
+      'V-Neck': 'V-Neck', 'Round Neck': 'Round Neck', 'Collar': 'Collar',
+      'Slim Fit': 'Slim Fit', 'Athletic Cut': 'Athletic Cut', 'Regular': 'Regular',
+      'Breathable Polyester': 'Breathable Polyester', 'Moisture-Wicking': 'Moisture-Wicking',
       'Side Stripes': 'Side Stripes',
-      'Mid-thigh': 'Mid-thigh',
-      'Elastic with Drawstring': 'Elastic with Drawstring',
-      'Loose Fit': 'Loose Fit',
-      'Front View': 'Front View',
-      '3/4 View': '3/4 View',
-      'Full Body View': 'Full Body View',
-      'Photorealistic': 'Photorealistic',
-      '3D Style': '3D Style',
+      'Front View': 'Front View', '3/4 View': '3/4 View', 'Full Body View': 'Full Body View',
+      'Photorealistic': 'Photorealistic', '3D Style': '3D Style',
+      'Model: Standard': 'Standard Quality',
+      'Model: High Quality': 'High Quality',
     },
     descriptions: {
-      '1/12': 'Mini scale (approx. 10-15cm), perfect for desktops.',
-      '1/8': 'Small scale (approx. 15-20cm), a popular space-saving choice.',
-      '1/7': 'Standard anime figure scale (approx. 20-25cm), very common.',
-      '1/6': 'Medium scale (approx. 25-30cm), popular for high-end collectibles and action figures.',
-      '1/4': 'Large scale (approx. 40-50cm), for highly detailed and impressive statement pieces.',
-      'Anime': 'Classic Japanese anime/manga style with large eyes and expressive features.',
-      'Realistic': 'Hyper-realistic style with detailed skin textures and accurate anatomy.',
-      'Chibi/SD': 'Super-deformed style with a large head and small body for a cute appearance.',
-      'Stylized': 'A unique, non-realistic style, like a Western cartoon or fantasy art.',
-      'Matte': 'A smooth, non-reflective surface that diffuses light.',
-      'Glossy': 'A high-shine, reflective finish for a polished look.',
-      'Metallic': 'Simulates the look of real metal, great for armor and weapons.',
-      'Weathered': 'Adds an aged or battle-worn look with scratches, dust, or rust.',
-      'None': 'The figure stands on its own without a display base.',
-      'Simple Disc': 'A clean, elegant circular or square base.',
-      'Themed Diorama': 'A scenic base that tells a story, like a battlefield or forest.',
-      'Floating': 'A discreet stand that gives a flying or weightless appearance.',
-      'PVC/ABS': 'Standard, versatile plastic used for most commercial figures.',
-      'Resin': 'High-quality material for capturing fine details, heavier and more brittle.',
-      'Polystone': 'A stone-like compound that is heavy and durable.',
-      'Metal': 'Uses die-cast metal parts for a premium weight and feel.',
-      // FIX: Use unique key 'Figure: Standing' to avoid conflict.
-      'Figure: Standing': 'A stable, neutral museum-style standing pose.',
-      'Dynamic/Action': 'An energetic pose captured mid-movement, like jumping or attacking.',
-      // FIX: Use unique key 'Figure: Sitting' to avoid conflict.
-      'Figure: Sitting': 'A relaxed sitting or kneeling pose.',
-      'Original Colors': 'Uses the color palette from the uploaded image.',
-      'Monochrome': 'Renders the figure in a single color scheme, like grayscale.',
-      'Vibrant': 'Enhances the original colors to be more saturated and eye-catching.',
-      'Standard': 'A balanced level of detail suitable for the scale.',
-      'High': 'Adds fine details like clothing textures and intricate expressions.',
-      'Ultra': 'Captures microscopic details for the highest level of realism.',
-      'Studio': 'A clean, neutral background for a professional product shot.',
-      'Bookshelf': 'Places the figure on a bookshelf among books for a cozy feel.',
-      'Desktop': 'A modern desk environment with items like a keyboard or monitor.',
-      'Showcase': 'Inside a glass display case with dramatic lighting.',
-
-      // Pose Options descriptions
-      'Original Pose': "Maintains the pose from your uploaded photo of the person.",
-      // FIX: Use unique key 'Try On: Standing' to avoid conflict.
-      'Try On: Standing': "Generates a standard, neutral standing pose.",
-      'Fashion Model': "Generates a stylish pose suitable for a fashion catalogue.",
-      'Walking': "Generates a dynamic pose as if the person is mid-stride.",
-      // FIX: Use unique key 'Try On: Sitting' to avoid conflict.
-      'Try On: Sitting': "Generates a natural sitting pose on a simple surface.",
-      
-      // Background Options descriptions
-      'Original Background': "Keeps the background from the original person's photo.",
-      'Urban': "A realistic city street or modern building scene.",
-      'Nature': "A realistic natural setting like a park, forest, or beach.",
-      'Cafe': "A cozy and stylish café interior.",
+      'Anime': "Japanese anime/manga style with large eyes and defined lines.",
+      'Realistic': "Hyper-realistic style with detailed textures and natural shading.",
+      'Chibi/SD': "Super-deformed style with a large head and small body.",
+      'Stylized': "A unique, modern cartoon or fantasy art style.",
+      'Matte': "A smooth, non-reflective surface finish.",
+      'Glossy': "A high-shine, reflective finish.",
+      'Metallic': "Realistic metal sheen on specific parts like armor or weapons.",
+      'Weathered': "An aged or battle-worn look with scratches and dust.",
+      'Simple Disc': "A simple circular or square display base.",
+      'Themed Diorama': "A base that complements the character's origin, like a battlefield or forest.",
+      'Floating': "A discreet stand that gives a flying or floating appearance.",
+      'Dynamic/Action': "An energetic pose as if captured mid-movement.",
+      'Monochrome': "A single-color scheme, like grayscale or all-black.",
+      'Vibrant': "High-saturation colors that make the figure pop.",
+      'High': "High detail with fine textures and intricate expressions.",
+      'Ultra': "Ultra-fine detail, capturing microscopic elements like fabric weaves.",
+      'Studio': "A clean, neutral studio background with professional lighting.",
+      'Bookshelf': "A realistic bookshelf with a shallow depth of field (bokeh effect).",
+      'Desktop': "A modern desktop environment with natural lighting.",
+      'Showcase': "Inside a glass display case with dramatic lighting.",
+      'Original Pose': "Preserves the exact pose from the original image.",
+      'Try On: Standing': "A natural, neutral standing pose.",
+      'Fashion Model': "A confident, stylish pose suitable for a catalogue.",
+      'Walking': "A 'freeze-frame' walking pose, as if captured mid-stride.",
+      'Try On: Sitting': "A relaxed and natural sitting pose.",
+      'Original Background': "Uses the exact background from the person's image.",
+      'Urban': "A stylish urban background like a city street or graffiti wall.",
+      'Nature': "A serene natural background like a park or beach.",
+      'Cafe': "A cozy and modern café interior.",
+      'Model: Standard': "A fast, cost-effective model. Free tier usage is limited. Rate limits are much higher with a billed account.",
+      'Model: High Quality': "A premium model for the highest image quality. A billed Google Cloud account is required to use this option.",
     }
   },
   ko: {
     ui: {
       selectServiceTitle: "서비스 선택",
       figureFusionTitle: "피규어 퓨전 AI",
-      figureFusionDescription: "사진을 수집용 피규어로 변환합니다.",
+      figureFusionDescription: "사진을 멋진 피규어로 변신시켜 보세요.",
       tryOnTitle: "가상 피팅 AI",
-      tryOnDescription: "다른 이미지의 옷으로 사람을 스타일링합니다.",
+      tryOnDescription: "이미지 속 옷을 사람에게 입혀보세요.",
       backButtonLabel: "뒤로 가기",
       soccerUniformTitle: "축구 유니폼 AI",
-      soccerUniformDescription: "상세한 옵션으로 맞춤형 축구 유니폼을 디자인하세요.",
+      soccerUniformDescription: "상세한 옵션으로 커스텀 축구 유니폼을 디자인하세요.",
 
       headerTitle: "피규어 퓨전 AI",
-      headerSubtitle: "사진을 업로드하면 AI가 마법처럼 멋진 수집가 스타일의 피규어로 변환해 드립니다.",
+      headerSubtitle: "사진을 업로드하면 AI가 마법처럼 멋진 수집용 피규어 스타일로 변환해줍니다.",
       
       tryOnHeaderTitle: "가상 피팅 AI",
-      tryOnHeaderSubtitle: "사람과 옷 사진을 업로드하여 스타일링된 모습을 확인하세요.",
+      tryOnHeaderSubtitle: "사람 사진과 옷 사진을 업로드하여 스타일을 확인하세요.",
       
       soccerHeaderTitle: "축구 유니폼 디자이너",
       soccerHeaderSubtitle: "팀의 고유한 유니폼을 만드세요. 색상, 패턴, 로고 등을 지정하여 전문적인 축구 유니폼을 생성합니다.",
@@ -232,57 +195,53 @@ const translations = {
       uploaderSubtitle: "PNG, JPG, 또는 WEBP. 고해상도를 권장합니다.",
       uploadPersonTitle: "사람 사진 업로드",
       uploadPersonSubtitle: "선명한 전신 또는 반신 사진이 가장 좋습니다.",
-      uploadItemText: "아이템 추가",
+      uploadItemText: "의류 추가",
 
       originalImageTitle: "원본 이미지",
-      generatedImageTitle: "피규어 & 패키지 샷",
+      generatedImageTitle: "피규어 & 패키지",
       generatedUniformTitle: "생성된 유니폼",
       placeholderText: "AI 생성 결과가 여기에 표시됩니다",
-      
+
       personImageTitle: "사람",
-      clothingItemsTitle: "의류 및 액세서리 (1-4개)",
+      clothingItemsTitle: "의류 & 액세서리 (1-4개)",
       generatedResultTitle: "스타일링 결과",
 
-      transformButton: "피규어로 변환하기",
+      transformButton: "피규어로 변환",
       generateButton: "스타일 생성",
-      regenerateButton: "다시 생성하기",
-      startOverButton: "처음부터 시작",
+      regenerateButton: "재생성",
+      startOverButton: "처음부터 다시 시작",
 
       loaderMsg1: "AI의 창의 회로를 예열 중입니다...",
-      loaderMsg2: "디지털 페인트와 광택을 적용 중입니다...",
-      loaderMsg3: "당신의 미니어처 걸작을 제작 중입니다...",
-      loaderMsg4: "픽셀을 피규어 크기로 줄이는 중입니다...",
-      loaderMsg5: "훌륭한 예술에는 시간이 필요합니다. 잠시만 기다려주세요.",
+      loaderMsg2: "디지털 페인트를 칠하고 광택을 내는 중...",
+      loaderMsg3: "당신의 작은 걸작을 만드는 중...",
+      loaderMsg4: "픽셀을 피규어 크기로 줄이는 중...",
+      loaderMsg5: "잠시만 기다려주세요, 멋진 예술에는 시간이 필요합니다.",
 
       errorTitle: "오류",
       errorUpload: "먼저 이미지를 업로드해주세요.",
       errorPerson: "사람 사진을 업로드해주세요.",
-      errorItems: "하나 이상의 의류 아이템을 업로드해주세요.",
-      errorGenerate: "AI가 이미지를 생성하지 못했습니다. 다른 이미지를 사용하거나 옵션을 조정해보세요.",
+      errorItems: "최소 하나 이상의 의류 아이템을 업로드해주세요.",
+      errorGenerate: "AI가 이미지를 생성하지 못했습니다. 다른 이미지를 시도하거나 옵션을 조정해주세요.",
       errorTransform: "이미지를 변환하는 중 오류가 발생했습니다. 다시 시도해주세요.",
       
-      // Pose Options
       poseSectionTitle: "포즈 선택",
       'Original Pose': "원본 포즈",
-      // FIX: Use unique key 'Try On: Standing' to avoid conflict.
-      'Try On: Standing': "서있는 포즈",
-      'Fashion Model': "패션 모델",
+      'Try On: Standing': "서 있는 포즈",
+      'Fashion Model': "패션 모델 포즈",
       'Walking': "걷는 포즈",
-      // FIX: Use unique key 'Try On: Sitting' to avoid conflict.
-      'Try On: Sitting': "앉은 포즈",
+      'Try On: Sitting': "앉아있는 포즈",
       
-      // Background Options
       backgroundSectionTitle: "배경 선택",
       'Original Background': "원본 배경",
       'Urban': "도시",
       'Nature': "자연",
       'Cafe': "카페",
 
-      customizeTitle: "피규어 커스터마이징",
+      customizeTitle: "피규어 커스터마이즈",
       coreConceptSection: "핵심 컨셉",
       physicalPropertiesSection: "물리적 속성",
       stagingPoseSection: "연출 및 포즈",
-      aestheticsSection: "미적 요소",
+      aestheticsSection: "미학",
       artStyleLabel: "아트 스타일",
       scaleLabel: "스케일",
       materialLabel: "재질",
@@ -297,155 +256,111 @@ const translations = {
       'Matte': '무광', 'Glossy': '유광', 'Metallic': '메탈릭', 'Weathered': '웨더링',
       'None': '없음', 'Simple Disc': '단순 디스크', 'Themed Diorama': '테마 디오라마', 'Floating': '플로팅',
       'PVC/ABS': 'PVC/ABS', 'Resin': '레진', 'Polystone': '폴리스톤', 'Metal': '메탈',
-      // FIX: Use unique key 'Figure: Standing' to avoid conflict.
-      'Figure: Standing': '서있는 자세', 'Dynamic/Action': '역동적/액션', 'Figure: Sitting': '앉은 자세',
-      'Original Colors': '원본 색상', 'Monochrome': '단색', 'Vibrant': '선명한 색상',
+      'Figure: Standing': '서 있는 포즈', 'Dynamic/Action': '역동적/액션', 'Figure: Sitting': '앉아있는 포즈',
+      'Original Colors': '원본 색상', 'Monochrome': '단색', 'Vibrant': '선명하게',
       'Standard': '표준', 'High': '높음', 'Ultra': '최상',
-      'Studio': '스튜디오', 'Bookshelf': '책장', 'Desktop': '책상', 'Showcase': '장식장',
+      'Studio': '스튜디오', 'Bookshelf': '책장', 'Desktop': '데스크탑', 'Showcase': '쇼케이스',
 
       // Soccer Uniform Options
-      jerseyOptions: "상의(저지) 옵션",
-      shortsOptions: "하의(쇼츠) 옵션",
+      jerseyOptions: "상의 옵션 (저지)",
+      shortsOptions: "하의 옵션 (쇼츠)",
       renderOptions: "렌더링 옵션",
-      mainColor: "주요 색상",
+      mainColor: "메인 색상",
       accentColor: "보조 색상",
       pattern: "패턴",
-      logoTeam: "팀 로고 (설명)",
-      logoSponsor: "스폰서 로고 (설명)",
-      playerNumber: "등번호",
+      logoTeam: "팀 로고",
+      logoSponsor: "스폰서 로고",
+      playerNumber: "선수 번호",
       playerName: "선수 이름",
       fontStyle: "폰트 스타일",
       neckline: "목 부분",
-      sleeves: "소매",
       fit: "핏",
       material: "재질",
-      length: "길이",
-      waistband: "허리 밴드",
       view: "시점",
       style: "스타일",
-      'Stripes': '줄무늬',
-      'Checkered': '체크',
-      'Gradient': '그라데이션',
-      'Bold': '굵게',
-      'Italic': '기울임꼴',
-      'Futuristic': '미래적',
-      'V-Neck': 'V넥',
-      'Round Neck': '라운드넥',
-      'Collar': '칼라',
-      'Short': '짧은 소매',
-      'Long': '긴 소매',
-      'Slim Fit': '슬림핏',
-      'Athletic Cut': '운동선수 핏',
-      'Regular': '레귤러',
-      'Breathable Polyester': '통기성 폴리에스터',
-      'Moisture-Wicking': '흡습성',
+      generationModel: "생성 모델",
+      'Stripes': '줄무늬', 'Checkered': '체크', 'Gradient': '그라데이션',
+      'Bold': '굵게', 'Italic': '이탤릭', 'Futuristic': '미래적',
+      'V-Neck': 'V넥', 'Round Neck': '라운드넥', 'Collar': '카라',
+      'Slim Fit': '슬림핏', 'Athletic Cut': '애슬레틱 컷', 'Regular': '레귤러',
+      'Breathable Polyester': '통기성 폴리에스터', 'Moisture-Wicking': '흡습성',
       'Side Stripes': '측면 줄무늬',
-      'Mid-thigh': '허벅지 중간',
-      'Elastic with Drawstring': '고무줄과 끈',
-      'Loose Fit': '루즈핏',
-      'Front View': '정면',
-      '3/4 View': '3/4 뷰',
-      'Full Body View': '전신 뷰',
-      'Photorealistic': '사진처럼',
-      '3D Style': '3D 스타일',
+      'Front View': '정면', '3/4 View': '3/4 뷰', 'Full Body View': '전신 뷰',
+      'Photorealistic': '사실적', '3D Style': '3D 스타일',
+      'Model: Standard': '표준 품질',
+      'Model: High Quality': '고품질',
     },
     descriptions: {
-      '1/12': '미니 스케일(약 10-15cm), 데스크탑에 적합합니다.',
-      '1/8': '소형 스케일(약 15-20cm), 공간 절약에 좋은 인기있는 선택입니다.',
-      '1/7': '표준 애니메이션 피규어 스케일(약 20-25cm), 매우 일반적입니다.',
-      '1/6': '중형 스케일(약 25-30cm), 고급 수집품 및 액션 피규어에 인기가 많습니다.',
-      '1/4': '대형 스케일(약 40-50cm), 매우 상세하고 인상적인 작품을 위한 선택입니다.',
-      'Anime': '큰 눈과 표현력이 풍부한 특징을 가진 클래식한 일본 애니메이션/망가 스타일입니다.',
-      'Realistic': '상세한 피부 질감과 정확한 해부학을 갖춘 초사실적인 스타일입니다.',
-      'Chibi/SD': '큰 머리와 작은 몸을 가진 슈퍼 데포르메 스타일로 귀여운 외모를 연출합니다.',
-      'Stylized': '서양 카툰이나 판타지 아트와 같은 독특하고 비현실적인 스타일입니다.',
-      'Matte': '빛을 분산시키는 부드럽고 무반사 표면입니다.',
-      'Glossy': '세련된 느낌을 주는 고광택의 반사 마감입니다.',
-      'Metallic': '실제 금속의 모습을 시뮬레이션하여 갑옷이나 무기에 적합합니다.',
-      'Weathered': '긁힘, 먼지, 녹 등 낡거나 전투를 겪은 듯한 느낌을 추가합니다.',
-      'None': '피규어가 디스플레이 베이스 없이 스스로 서 있습니다.',
-      'Simple Disc': '깔끔하고 우아한 원형 또는 사각형 베이스입니다.',
-      'Themed Diorama': '전장이나 숲처럼 스토리를 전달하는 장면이 있는 베이스입니다.',
-      'Floating': '피규어가 날고 있거나 무중력 상태인 것처럼 보이게 하는 별도의 스탠드입니다.',
-      'PVC/ABS': '대부분의 상업용 피규어에 사용되는 표준적이고 다용도의 플라스틱입니다.',
-      'Resin': '미세한 디테일을 표현하기 위한 고품질 소재로, 더 무겁고 깨지기 쉽습니다.',
-      'Polystone': '무겁고 내구성이 있는 돌과 같은 질감의 합성물입니다.',
-      'Metal': '프리미엄 무게감과 느낌을 위해 다이캐스트 금속 부품을 사용합니다.',
-      // FIX: Use unique key 'Figure: Standing' to avoid conflict.
-      'Figure: Standing': '안정적이고 중립적인 박물관 스타일의 서있는 자세입니다.',
-      'Dynamic/Action': '점프하거나 공격하는 등 움직이는 중간을 포착한 역동적인 포즈입니다.',
-      // FIX: Use unique key 'Figure: Sitting' to avoid conflict.
-      'Figure: Sitting': '편안하게 앉거나 무릎을 꿇은 자세입니다.',
-      'Original Colors': '업로드된 이미지의 색상 팔레트를 사용합니다.',
-      'Monochrome': '피규어를 그레이스케일과 같은 단일 색상 구성으로 렌더링합니다.',
-      'Vibrant': '원본 색상을 더욱 채도 높고 눈에 띄게 향상시킵니다.',
-      'Standard': '스케일에 적합한 균형 잡힌 수준의 디테일입니다.',
-      'High': '의상 질감이나 복잡한 표정과 같은 미세한 디테일을 추가합니다.',
-      'Ultra': '최고 수준의 사실감을 위해 미세한 디테일까지 포착합니다.',
-      'Studio': '전문적인 제품 사진을 위한 깔끔하고 중립적인 배경입니다.',
-      'Bookshelf': '아늑한 느낌을 주기 위해 피규어를 책장 위 책들 사이에 배치합니다.',
-      'Desktop': '키보드나 모니터 같은 소품이 있는 현대적인 책상 환경입니다.',
-      'Showcase': '드라마틱한 조명이 있는 유리 장식장 내부입니다.',
-
-      // Pose Options descriptions
-      'Original Pose': "업로드된 사람 사진의 포즈를 유지합니다.",
-      // FIX: Use unique key 'Try On: Standing' to avoid conflict.
-      'Try On: Standing': "표준적인 중립 서있는 포즈를 생성합니다.",
-      'Fashion Model': "패션 카탈로그에 적합한 스타일리시한 포즈를 생성합니다.",
-      'Walking': "마치 걷는 도중인 것처럼 역동적인 포즈를 생성합니다.",
-      // FIX: Use unique key 'Try On: Sitting' to avoid conflict.
-      'Try On: Sitting': "단순한 표면에 자연스럽게 앉아있는 포즈를 생성합니다.",
-
-      // Background Options descriptions
-      'Original Background': "원본 사람 사진의 배경을 유지합니다.",
-      'Urban': "사실적인 도시 거리나 현대적인 건물 장면입니다.",
-      'Nature': "공원, 숲, 해변과 같은 사실적인 자연 환경입니다.",
-      'Cafe': "아늑하고 세련된 카페 실내입니다.",
+      'Anime': "큰 눈과 뚜렷한 선이 특징인 일본 애니메이션/만화 스타일입니다.",
+      'Realistic': "상세한 질감과 자연스러운 음영이 특징인 초사실적 스타일입니다.",
+      'Chibi/SD': "큰 머리와 작은 몸을 가진 슈퍼 데포르메 스타일입니다.",
+      'Stylized': "독특하고 현대적인 카툰 또는 판타지 아트 스타일입니다.",
+      'Matte': "빛을 반사하지 않는 부드러운 무광 표면 마감입니다.",
+      'Glossy': "빛을 반사하는 고광택 마감입니다.",
+      'Metallic': "갑옷이나 무기 같은 특정 부위에 사실적인 금속 광택을 줍니다.",
+      'Weathered': "긁힘이나 먼지 등으로 낡거나 닳은 듯한 느낌을 줍니다.",
+      'Simple Disc': "단순한 원형 또는 사각형의 디스플레이 베이스입니다.",
+      'Themed Diorama': "전장이나 숲처럼 캐릭터의 배경과 어울리는 테마 베이스입니다.",
+      'Floating': "날거나 떠 있는 듯한 모습을 연출하는 투명한 스탠드입니다.",
+      'Dynamic/Action': "움직이는 중간에 포착된 듯한 역동적인 포즈입니다.",
+      'Monochrome': "그레이스케일이나 올블랙 같은 단색 구성입니다.",
+      'Vibrant': "채도가 높은 색상으로 피규어를 돋보이게 합니다.",
+      'High': "미세한 질감과 복잡한 표정이 살아있는 높은 디테일입니다.",
+      'Ultra': "직물의 짜임새까지 포착하는 초미세 디테일입니다.",
+      'Studio': "전문적인 조명을 갖춘 깨끗하고 중립적인 스튜디오 배경입니다.",
+      'Bookshelf': "얕은 피사계 심도(보케 효과)가 있는 사실적인 책장 배경입니다.",
+      'Desktop': "자연광이 들어오는 현대적인 데스크탑 환경입니다.",
+      'Showcase': "드라마틱한 조명이 있는 유리 진열장 내부입니다.",
+      'Original Pose': "원본 이미지의 포즈를 정확하게 유지합니다.",
+      'Try On: Standing': "자연스럽고 중립적인 서 있는 포즈입니다.",
+      'Fashion Model': "카탈로그에 어울리는 자신감 있고 스타일리시한 포즈입니다.",
+      'Walking': "걷는 도중에 포착된 듯한 '정지 화면' 포즈입니다.",
+      'Try On: Sitting': "편안하고 자연스러운 앉은 자세입니다.",
+      'Original Background': "사람 이미지의 원본 배경을 그대로 사용합니다.",
+      'Urban': "도시 거리나 그래피티 벽 같은 세련된 도시 배경입니다.",
+      'Nature': "공원이나 해변 같은 평온한 자연 배경입니다.",
+      'Cafe': "아늑하고 현대적인 카페 실내 배경입니다.",
+      'Model: Standard': "빠르고 비용 효율적인 모델입니다. 무료 등급은 사용량이 제한되며, 결제 계정을 사용하면 한도가 크게 증가합니다.",
+      'Model: High Quality': "최고의 이미지 품질을 위한 프리미엄 모델입니다. 이 옵션을 사용하려면 결제 정보가 등록된 Google Cloud 계정이 필요합니다.",
     }
   }
 };
 
-type TranslationObject = typeof translations.en.ui;
-export type TranslationKey = keyof TranslationObject;
-type DescriptionKey = keyof typeof translations.en.descriptions;
-
-export type Language = 'en' | 'ko';
+export type Language = keyof typeof translations;
+export type TranslationKey = keyof (typeof translations.en.ui);
+export type DescriptionKey = keyof (typeof translations.en.descriptions);
 
 interface LanguageContextType {
-    language: Language;
-    setLanguage: (lang: Language) => void;
-    t: (key: TranslationKey) => string;
-    td: (key: DescriptionKey) => string;
+  language: Language;
+  setLanguage: (language: Language) => void;
+  t: (key: TranslationKey) => string;
+  td: (key: DescriptionKey) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-    const [language, setLanguageState] = useState<Language>('ko'); // Default to Korean
+export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [language, setLanguage] = useState<Language>('en');
 
-    const setLanguage = (lang: Language) => {
-        setLanguageState(lang);
-    };
+  const t = (key: TranslationKey): string => {
+    return translations[language]?.ui[key] || translations.en.ui[key];
+  };
 
-    const t = (key: TranslationKey): string => {
-        return translations[language].ui[key] || translations.en.ui[key] || key;
-    };
-    
-    const td = (key: DescriptionKey): string => {
-        return translations[language].descriptions[key] || translations.en.descriptions[key] || '';
-    };
+  const td = (key: DescriptionKey): string => {
+    return translations[language]?.descriptions[key] || translations.en.descriptions[key] || '';
+  }
 
-    return (
-        <LanguageContext.Provider value={{ language, setLanguage, t, td }}>
-            {children}
-        </LanguageContext.Provider>
-    );
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t, td }}>
+      {children}
+    </LanguageContext.Provider>
+  );
 };
 
-export const useLanguage = () => {
-    const context = useContext(LanguageContext);
-    if (context === undefined) {
-        throw new Error('useLanguage must be used within a LanguageProvider');
-    }
-    return context;
+export const useLanguage = (): LanguageContextType => {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
 };

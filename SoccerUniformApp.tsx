@@ -33,6 +33,7 @@ const initialUniformOptions: SoccerUniformOptionsType = {
     render: {
         view: 'Front View',
         style: 'Photorealistic',
+        model: 'Model: Standard',
     },
 };
 

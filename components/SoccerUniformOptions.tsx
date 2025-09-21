@@ -2,8 +2,11 @@ import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { TranslationKey } from '../contexts/LanguageContext';
 import { ColorInput } from './ColorInput';
+import { Tooltip } from './Tooltip';
 
 // --- Type Definitions ---
+export type RenderModel = 'Model: Standard' | 'Model: High Quality';
+
 export interface SoccerUniformOptions {
     jersey: {
         mainColor: string;
@@ -31,6 +34,7 @@ export interface SoccerUniformOptions {
     render: {
         view: 'Front View' | '3/4 View' | 'Full Body View';
         style: 'Realistic' | 'Photorealistic' | '3D Style';
+        model: RenderModel;
     };
 }
 
@@ -58,23 +62,24 @@ interface OptionGroupProps<T extends string> {
 }
 
 const OptionGroup = <T extends string>({ labelKey, options, selectedValue, onChange }: OptionGroupProps<T>) => {
-    const { t } = useLanguage();
+    const { t, td } = useLanguage();
     return (
         <div>
             <h4 className="text-sm font-semibold text-gray-400 mb-2">{t(labelKey)}</h4>
             <div className="flex flex-wrap gap-2">
                 {options.map((option) => (
-                    <button
-                        key={option}
-                        onClick={() => onChange(option)}
-                        className={`px-3 py-1.5 text-sm rounded-full transition-colors duration-200 ${
-                            selectedValue === option
-                                ? 'bg-indigo-600 text-white font-semibold shadow-md'
-                                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                        }`}
-                    >
-                        {t(option as any)}
-                    </button>
+                    <Tooltip key={option} text={td(option as any)}>
+                        <button
+                            onClick={() => onChange(option)}
+                            className={`px-3 py-1.5 text-sm rounded-full transition-colors duration-200 ${
+                                selectedValue === option
+                                    ? 'bg-indigo-600 text-white font-semibold shadow-md'
+                                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                            }`}
+                        >
+                            {t(option as any)}
+                        </button>
+                    </Tooltip>
                 ))}
             </div>
         </div>
@@ -117,6 +122,8 @@ export const SoccerUniformOptions: React.FC<SoccerUniformOptionsProps> = ({ curr
         });
     };
 
+    const renderModels: readonly RenderModel[] = ['Model: Standard', 'Model: High Quality'];
+
     return (
         <div className="p-6 bg-gray-800/50 border border-gray-700 rounded-2xl space-y-8">
             <Section titleKey="jerseyOptions">
@@ -144,8 +151,11 @@ export const SoccerUniformOptions: React.FC<SoccerUniformOptionsProps> = ({ curr
             </Section>
             
             <Section titleKey="renderOptions">
-                <OptionGroup labelKey="view" options={['Front View', '3/4 View', 'Full Body View']} selectedValue={currentOptions.render.view} onChange={(v) => handleOptionChange('render', 'view', v)} />
-                <OptionGroup labelKey="style" options={['Realistic', 'Photorealistic', '3D Style']} selectedValue={currentOptions.render.style} onChange={(v) => handleOptionChange('render', 'style', v)} />
+                <div className="space-y-4">
+                    <OptionGroup labelKey="view" options={['Front View', '3/4 View', 'Full Body View']} selectedValue={currentOptions.render.view} onChange={(v) => handleOptionChange('render', 'view', v)} />
+                    <OptionGroup labelKey="style" options={['Realistic', 'Photorealistic', '3D Style']} selectedValue={currentOptions.render.style} onChange={(v) => handleOptionChange('render', 'style', v)} />
+                    <OptionGroup labelKey="generationModel" options={renderModels} selectedValue={currentOptions.render.model} onChange={(v) => handleOptionChange('render', 'model', v)} />
+                </div>
             </Section>
         </div>
     );
