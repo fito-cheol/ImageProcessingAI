@@ -16,13 +16,13 @@ const ManualInstallPopup: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     return (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={onClose}>
             <div className="bg-gray-800 border border-gray-700 rounded-2xl p-6 text-white max-w-sm w-full text-center shadow-2xl" onClick={e => e.stopPropagation()}>
-                <h3 className="text-xl font-bold mb-4">{t('iosInstallPromptTitle')}</h3>
-                <p className="text-gray-300 mb-6">{t('iosInstallPromptBody')}</p>
+                <h3 className="text-xl font-bold mb-4">{t('manualInstallPromptTitle')}</h3>
+                <p className="text-gray-300 mb-6">{t('manualInstallPromptBody')}</p>
                 <button
                     onClick={onClose}
                     className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition-colors"
                 >
-                    {t('iosInstallPromptClose')}
+                    {t('manualInstallPromptClose')}
                 </button>
             </div>
         </div>
@@ -33,7 +33,6 @@ const ManualInstallPopup: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 export const Footer: React.FC = () => {
     const { language, setLanguage, t } = useLanguage();
     const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-    const [showInstallButton, setShowInstallButton] = useState(false);
     const [showManualPopup, setShowManualPopup] = useState(false);
 
     useEffect(() => {
@@ -41,13 +40,6 @@ export const Footer: React.FC = () => {
             e.preventDefault();
             setInstallPrompt(e as BeforeInstallPromptEvent);
         };
-        
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches || (window.navigator as any).standalone;
-        
-        if (isMobile && !isInStandaloneMode) {
-            setShowInstallButton(true);
-        }
 
         window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
@@ -73,6 +65,11 @@ export const Footer: React.FC = () => {
             setShowManualPopup(true);
         }
     };
+    
+    const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches || (window.navigator as any).standalone;
+
+    // Always show the install button unless the app is already running in standalone mode.
+    const showInstallButton = !isInStandaloneMode;
 
     const toggleLanguage = () => {
         setLanguage(language === 'en' ? 'ko' : 'en');

@@ -50,9 +50,9 @@ const translations = {
       startOverButton: "Start Over",
       installAppTitle: "Install App",
       installAppButton: "Install",
-      iosInstallPromptTitle: "Install App",
-      iosInstallPromptBody: "To add this app to your home screen, find the 'Add to Home Screen' or 'Install' option in your browser's menu.",
-      iosInstallPromptClose: "Close",
+      manualInstallPromptTitle: "App Install Guide",
+      manualInstallPromptBody: "Your browser does not support automatic installation. To install, please tap the [Share] icon in your browser, then find and select \"Add to Home Screen\" from the menu.",
+      manualInstallPromptClose: "Close",
 
       // Loader messages
       loaderMsg1: "Warming up the AI's creative circuits...",
@@ -217,9 +217,9 @@ const translations = {
       startOverButton: "처음부터 다시 시작",
       installAppTitle: "앱 설치",
       installAppButton: "설치",
-      iosInstallPromptTitle: "앱 설치하기",
-      iosInstallPromptBody: "이 웹 앱을 홈 화면에 추가하려면, 브라우저 메뉴에서 '홈 화면에 추가' 또는 '설치' 옵션을 찾아 선택하세요.",
-      iosInstallPromptClose: "닫기",
+      manualInstallPromptTitle: "앱 설치 안내",
+      manualInstallPromptBody: "사용하시는 브라우저는 자동 설치를 지원하지 않습니다. 앱을 설치하려면, 브라우저의 [공유] 버튼을 누른 뒤, 메뉴에서 [홈 화면에 추가]를 선택해주세요.",
+      manualInstallPromptClose: "닫기",
 
       loaderMsg1: "AI의 창의 회로를 예열 중입니다...",
       loaderMsg2: "디지털 페인트를 칠하고 광택을 내는 중...",
