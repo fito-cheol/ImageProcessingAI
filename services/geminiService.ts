@@ -1,3 +1,4 @@
+
 import { GoogleGenAI, Modality } from "@google/genai";
 import { FigureOptions } from "../components/TransformOptions";
 import { SoccerUniformOptions } from "../components/SoccerUniformOptions";
@@ -331,54 +332,4 @@ export const generateSoccerUniform = async (
         const response = await ai.models.generateImages({
             model: 'imagen-4.0-generate-001',
             prompt: prompt,
-            config: {
-              numberOfImages: 1,
-              outputMimeType: 'image/png',
-              aspectRatio: '1:1',
-            },
-        });
-        
-        if (response.generatedImages && response.generatedImages.length > 0) {
-            const base64ImageBytes = response.generatedImages[0].image.imageBytes;
-            const imageUrl = `data:image/png;base64,${base64ImageBytes}`;
-            return { imageUrl, text: null };
-        } else {
-            return { imageUrl: null, text: 'Image generation failed with Imagen model.' };
-        }
-
-    } else { // Standard Quality
-        const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash-image-preview',
-            contents: {
-                parts: [{ text: prompt }]
-            },
-            config: {
-              responseModalities: [Modality.IMAGE, Modality.TEXT],
-            },
-        });
-
-        let imageUrl: string | null = null;
-        let text: string | null = null;
-        
-        if (response.candidates && response.candidates.length > 0) {
-            for (const part of response.candidates[0].content.parts) {
-                if (part.inlineData) {
-                  const base64ImageBytes = part.inlineData.data;
-                  const imageMimeType = part.inlineData.mimeType;
-                  imageUrl = `data:${imageMimeType};base64,${base64ImageBytes}`;
-                } else if (part.text) {
-                  text = part.text;
-                }
-            }
-        }
-        return { imageUrl, text };
-    }
-
-  } catch (error) {
-    console.error("Error calling Gemini API for Soccer Uniform:", error);
-    if (error instanceof Error) {
-        throw new Error(`Gemini API Error: ${error.message}`);
-    }
-    throw new Error("An unknown error occurred during the soccer uniform generation.");
-  }
-};
+            config

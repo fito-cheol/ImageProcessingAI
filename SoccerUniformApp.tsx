@@ -5,6 +5,7 @@ import { SoccerUniformOptions, SoccerUniformOptions as SoccerUniformOptionsType 
 import { generateSoccerUniform } from './services/geminiService';
 import { SparklesIcon } from './components/icons/SparklesIcon';
 import { useLanguage } from './contexts/LanguageContext';
+import { Footer } from './components/Footer';
 
 const initialUniformOptions: SoccerUniformOptionsType = {
     jersey: {
@@ -42,7 +43,7 @@ export const SoccerUniformApp: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [uniformOptions, setUniformOptions] = useState<SoccerUniformOptionsType>(initialUniformOptions);
-  const { language, setLanguage, t } = useLanguage();
+  const { t } = useLanguage();
 
   const resetState = () => {
       setGeneratedImage(null);
@@ -75,10 +76,6 @@ export const SoccerUniformApp: React.FC = () => {
       setIsLoading(false);
     }
   }, [uniformOptions, t]);
-
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'ko' : 'en');
-  };
 
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans antialiased flex flex-col">
@@ -141,11 +138,7 @@ export const SoccerUniformApp: React.FC = () => {
         </div>
 
       </main>
-      <footer className="text-center py-6 text-gray-500 text-sm">
-        <button onClick={toggleLanguage} className="text-indigo-400 hover:text-indigo-300 transition-colors">
-            {language === 'en' ? '한국어로 변경' : 'Switch to English'}
-        </button>
-      </footer>
+      <Footer />
     </div>
   );
 };

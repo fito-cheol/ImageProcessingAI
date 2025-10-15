@@ -8,6 +8,7 @@ import { transformImageToFigure } from './services/geminiService';
 import { fileToBase64 } from './utils/fileUtils';
 import { SparklesIcon } from './components/icons/SparklesIcon';
 import { useLanguage } from './contexts/LanguageContext';
+import { Footer } from './components/Footer';
 
 const initialFigureOptions: Omit<FigureOptions, 'mode'> = {
   scale: '1/7',
@@ -30,7 +31,7 @@ export const FigureFusionApp: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [figureOptions, setFigureOptions] = useState<Omit<FigureOptions, 'mode'>>(initialFigureOptions);
-  const { language, setLanguage, t } = useLanguage();
+  const { t } = useLanguage();
 
   const handleImageUpload = (file: File) => {
     setOriginalImageFile(file);
@@ -88,10 +89,6 @@ export const FigureFusionApp: React.FC = () => {
       setIsLoading(false);
     }
   }, [originalImageFile, figureOptions, originalImageDimensions, t]);
-
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'ko' : 'en');
-  };
 
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans antialiased flex flex-col">
@@ -162,11 +159,7 @@ export const FigureFusionApp: React.FC = () => {
         )}
 
       </main>
-      <footer className="text-center py-6 text-gray-500 text-sm">
-        <button onClick={toggleLanguage} className="text-indigo-400 hover:text-indigo-300 transition-colors">
-            {language === 'en' ? '한국어로 변경' : 'Switch to English'}
-        </button>
-      </footer>
+      <Footer />
     </div>
   );
 };

@@ -48,6 +48,8 @@ const translations = {
       generateButton: "Generate Style",
       regenerateButton: "Re-generate",
       startOverButton: "Start Over",
+      installAppTitle: "Install App",
+      installAppButton: "Install",
 
       // Loader messages
       loaderMsg1: "Warming up the AI's creative circuits...",
@@ -210,6 +212,8 @@ const translations = {
       generateButton: "스타일 생성",
       regenerateButton: "재생성",
       startOverButton: "처음부터 다시 시작",
+      installAppTitle: "앱 설치",
+      installAppButton: "설치",
 
       loaderMsg1: "AI의 창의 회로를 예열 중입니다...",
       loaderMsg2: "디지털 페인트를 칠하고 광택을 내는 중...",

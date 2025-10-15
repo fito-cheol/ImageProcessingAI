@@ -7,6 +7,7 @@ import { fileToBase64 } from './utils/fileUtils';
 import { SparklesIcon } from './components/icons/SparklesIcon';
 import { useLanguage } from './contexts/LanguageContext';
 import { TryOnOptions } from './components/PoseOptions';
+import { Footer } from './components/Footer';
 
 const MAX_ITEMS = 4;
 
@@ -37,7 +38,7 @@ export const TryOnApp: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [pose, setPose] = useState<TryOnPose>('Original Pose');
   const [background, setBackground] = useState<TryOnBackground>('Original Background');
-  const { language, setLanguage, t } = useLanguage();
+  const { t } = useLanguage();
 
   const handlePersonUpload = (file: File) => {
     setPersonFile(file);
@@ -108,10 +109,6 @@ export const TryOnApp: React.FC = () => {
     }
   }, [personFile, itemFiles, t, pose, background]);
   
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'ko' : 'en');
-  };
-
   const personPreview = personFile ? URL.createObjectURL(personFile) : null;
   const itemPreviews = itemFiles.map(file => file ? URL.createObjectURL(file) : null);
 
@@ -220,11 +217,7 @@ export const TryOnApp: React.FC = () => {
         )}
 
       </main>
-      <footer className="text-center py-6 text-gray-500 text-sm">
-        <button onClick={toggleLanguage} className="text-indigo-400 hover:text-indigo-300 transition-colors">
-            {language === 'en' ? '한국어로 변경' : 'Switch to English'}
-        </button>
-      </footer>
+      <Footer />
     </div>
   );
 };

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Tooltip } from './Tooltip';
@@ -44,32 +45,34 @@ export const TryOnOptions: React.FC<TryOnOptionsProps> = ({ currentPose, onPoseC
             <div>
                 <h3 className="text-center text-lg font-semibold text-gray-100 mb-4">{t('poseSectionTitle')}</h3>
                 <div className="flex flex-wrap gap-3 justify-center">
-                    {poses.map((pose) => (
-                        <OptionButton
-                            key={pose}
-                            option={pose}
-                            label={t(pose as TranslationKey)}
-                            description={td(pose as any)}
-                            isSelected={currentPose === pose}
-                            onClick={onPoseChange}
-                        />
-                    ))}
+                    {/* FIX: Avoid TypeScript error with 'key' prop by creating a props object and spreading it. */}
+                    {poses.map((pose) => {
+                        const buttonProps = {
+                            option: pose,
+                            label: t(pose as TranslationKey),
+                            description: td(pose as any),
+                            isSelected: currentPose === pose,
+                            onClick: onPoseChange,
+                        };
+                        return <OptionButton key={pose} {...buttonProps} />;
+                    })}
                 </div>
             </div>
             <div className="border-t border-gray-700"></div>
             <div>
                 <h3 className="text-center text-lg font-semibold text-gray-100 mb-4">{t('backgroundSectionTitle')}</h3>
                 <div className="flex flex-wrap gap-3 justify-center">
-                    {backgrounds.map((background) => (
-                        <OptionButton
-                            key={background}
-                            option={background}
-                            label={t(background as TranslationKey)}
-                            description={td(background as any)}
-                            isSelected={currentBackground === background}
-                            onClick={onBackgroundChange}
-                        />
-                    ))}
+                    {/* FIX: Avoid TypeScript error with 'key' prop by creating a props object and spreading it. */}
+                    {backgrounds.map((background) => {
+                         const buttonProps = {
+                            option: background,
+                            label: t(background as TranslationKey),
+                            description: td(background as any),
+                            isSelected: currentBackground === background,
+                            onClick: onBackgroundChange,
+                        };
+                        return <OptionButton key={background} {...buttonProps} />;
+                    })}
                 </div>
             </div>
         </div>

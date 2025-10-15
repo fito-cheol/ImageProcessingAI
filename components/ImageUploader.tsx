@@ -1,3 +1,4 @@
+
 import React, { useCallback, useState } from 'react';
 import { useLanguage, TranslationKey } from '../contexts/LanguageContext';
 
@@ -14,7 +15,7 @@ const UploadIcon: React.FC = () => (
 );
 
 
-export const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload, titleKey = 'uploaderTitle', subtitleKey = 'uploaderSubtitle' }) => {
+export const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload, titleKey, subtitleKey }) => {
     const [isDragging, setIsDragging] = useState(false);
     const { t } = useLanguage();
 
@@ -45,6 +46,10 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload, tit
         setIsDragging(false);
     }, []);
 
+    // FIX: Use nullish coalescing operator to provide default values without causing type widening issues.
+    const finalTitleKey = titleKey ?? 'uploaderTitle';
+    const finalSubtitleKey = subtitleKey ?? 'uploaderSubtitle';
+
   return (
     <div className="max-w-2xl mx-auto w-full">
       <label
@@ -57,9 +62,9 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload, tit
         <div className="text-center">
             <UploadIcon />
           <h2 className="text-xl font-semibold text-gray-200">
-            {t(titleKey)}
+            {t(finalTitleKey)}
           </h2>
-          <p className="text-sm text-gray-500 mt-1">{t(subtitleKey)}</p>
+          <p className="text-sm text-gray-500 mt-1">{t(finalSubtitleKey)}</p>
         </div>
         <input id="file-upload" name="file-upload" type="file" className="sr-only" accept="image/png, image/jpeg, image/webp" onChange={handleFileChange} />
       </label>

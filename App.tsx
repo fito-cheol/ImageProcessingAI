@@ -1,17 +1,15 @@
+
 import React, { useState } from 'react';
 import { useLanguage } from './contexts/LanguageContext';
 import { ServiceSelector } from './components/ServiceSelector';
 import { FigureFusionApp } from './FigureFusionApp';
 import { TryOnApp } from './TryOnApp';
 import { SoccerUniformApp } from './SoccerUniformApp';
+import { Footer } from './components/Footer';
 
 const App: React.FC = () => {
     const [service, setService] = useState<'figure' | 'try-on' | 'soccer' | null>(null);
-    const { language, setLanguage, t } = useLanguage();
-
-    const toggleLanguage = () => {
-        setLanguage(language === 'en' ? 'ko' : 'en');
-    };
+    const { t } = useLanguage();
 
     if (!service) {
         return (
@@ -19,11 +17,7 @@ const App: React.FC = () => {
                 <main className="container mx-auto px-4 py-8 md:py-12 flex-grow flex flex-col items-center justify-center">
                     <ServiceSelector onSelect={setService} />
                 </main>
-                <footer className="text-center py-6 text-gray-500 text-sm">
-                    <button onClick={toggleLanguage} className="text-indigo-400 hover:text-indigo-300 transition-colors">
-                        {language === 'en' ? '한국어로 변경' : 'Switch to English'}
-                    </button>
-                </footer>
+                <Footer />
             </div>
         );
     }
