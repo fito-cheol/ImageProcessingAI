@@ -49,19 +49,25 @@ export const Footer: React.FC = () => {
     }, []);
 
     const handleInstallClick = async () => {
-        if (installPrompt) {
-            await installPrompt.prompt();
-            // The userChoice property returns a Promise that resolves to an object containing the outcome of the user's choice.
-            const { outcome } = await installPrompt.userChoice;
+        try {
+            // Attempt to show the native installation prompt.
+            // This will throw an error if `installPrompt` is null, which is the desired behavior
+            // to catch the case where the prompt isn't ready or supported.
+            await installPrompt!.prompt();
+            
+            // Wait for the user to respond to the prompt.
+            const { outcome } = await installPrompt!.userChoice;
             if (outcome === 'accepted') {
                 console.log('User accepted the A2HS prompt');
             } else {
                 console.log('User dismissed the A2HS prompt');
             }
-            // We can only use the prompt once.
+            // The prompt can only be used once.
             setInstallPrompt(null);
-        } else {
-            // If no native prompt is available, show manual instructions.
+        } catch (error) {
+            // If the prompt fails (e.g., `installPrompt` is null, or another error occurs),
+            // fall back to showing the manual installation instructions popup.
+            console.log('Native install prompt failed, showing manual popup.', error);
             setShowManualPopup(true);
         }
     };
