@@ -1,20 +1,21 @@
 
 
+
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Tooltip } from './Tooltip';
 import { TryOnPose, TryOnBackground } from '../services/geminiService';
 import { TranslationKey } from '../contexts/LanguageContext';
 
-interface OptionButtonProps<T> {
-    option: T;
+interface OptionButtonProps {
+    option: string;
     label: string;
     description: string;
     isSelected: boolean;
-    onClick: (value: T) => void;
+    onClick: (value: string) => void;
 }
 
-const OptionButton = <T extends string>({ option, label, description, isSelected, onClick }: OptionButtonProps<T>) => (
+const OptionButton: React.FC<OptionButtonProps> = ({ option, label, description, isSelected, onClick }) => (
     <Tooltip text={description}>
         <button
             onClick={() => onClick(option)}
@@ -46,7 +47,7 @@ export const TryOnOptions: React.FC<TryOnOptionsProps> = ({ currentPose, onPoseC
             <div>
                 <h3 className="text-center text-lg font-semibold text-gray-100 mb-4">{t('poseSectionTitle')}</h3>
                 <div className="flex flex-wrap gap-3 justify-center">
-                    {/* FIX: Avoid TypeScript error with 'key' prop by passing props directly. */}
+                    {/* FIX: Avoid TypeScript error with 'key' prop by making OptionButton a non-generic React.FC. */}
                     {poses.map((pose) => (
                         <OptionButton 
                             key={pose}
@@ -63,7 +64,7 @@ export const TryOnOptions: React.FC<TryOnOptionsProps> = ({ currentPose, onPoseC
             <div>
                 <h3 className="text-center text-lg font-semibold text-gray-100 mb-4">{t('backgroundSectionTitle')}</h3>
                 <div className="flex flex-wrap gap-3 justify-center">
-                    {/* FIX: Avoid TypeScript error with 'key' prop by passing props directly. */}
+                    {/* FIX: Avoid TypeScript error with 'key' prop by making OptionButton a non-generic React.FC. */}
                     {backgrounds.map((background) => (
                          <OptionButton
                             key={background}
