@@ -1,10 +1,11 @@
 const CACHE_NAME = 'figure-fusion-ai-cache-v1';
+// IMPORTANT: If you add new files to the `public` folder, you must add their paths to this list to ensure they are cached.
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
-  '/manifest.json',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png',
+  '/manifest.webmanifest',
+  '/icon-192x192.png',
+  '/icon-512x512.png',
   '/index.tsx',
   '/App.tsx',
   '/FigureFusionApp.tsx',
